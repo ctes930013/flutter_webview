@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterwebview/result.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class Web extends StatefulWidget{
@@ -28,7 +29,7 @@ class _WebState extends State<Web> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(txt),
+        title: const Text("WebView"),
       ),
       body:
       WebView(
@@ -53,6 +54,30 @@ class _WebState extends State<Web> {
                 ));
               }
           )
+        },
+        navigationDelegate: (NavigationRequest request){
+          //檢查點擊事件連結的開頭
+          String urlScheme = request.url;
+          //print("URL: ${urlScheme}");
+          if(urlScheme.startsWith("flutterweb://")) {
+            //ex:flutterweb://result?value=cool
+            String scheme = urlScheme.split("://")[0] ?? '';
+            String host = urlScheme.split("://")[1] ?? '';
+            if(host.startsWith("result")){
+              var uri = Uri.dataFromString(urlScheme);  //converts string to a uri
+              //取得連結query參數
+              String value = uri.queryParameters["value"] ?? "";
+              //移除該頁面
+              //Navigator.pop(context);
+              //換頁
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Result(
+                value: value,
+              )));
+              //webview不要換頁
+              return NavigationDecision.prevent;
+            }
+          }
+          return NavigationDecision.navigate;
         },
       ),
     );

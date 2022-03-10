@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
 
   TextEditingController keyText = TextEditingController();      //欄位輸入框
 
+  //按鈕觸發事件
   void submit(context) {
     String txt = keyText.value.text;
     if(txt == ""){
@@ -32,7 +33,7 @@ class HomePage extends StatelessWidget {
     //debugPaintSizeEnabled = true;
     return Scaffold(
         appBar: AppBar(
-          title: const Text("WebView"),
+          title: const Text("原生App"),
         ),
         body:
         Container(
