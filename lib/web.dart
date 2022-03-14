@@ -4,6 +4,7 @@ import 'package:flutterwebview/result.dart';
 import 'package:flutterwebview/web_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'dart:async';
 
 class Web extends StatefulWidget{
 
@@ -20,10 +21,21 @@ class Web extends StatefulWidget{
 
 class _WebState extends State<Web> {
 
-  //定義webview的url
+  //定義webview的主url
   final String url = "http://34.146.148.69:8080/";
+  //定義webview的第一頁url
+  final String page1Url = "landing";
+  //定義webview的第二頁url
+  final String page2Url = "";
+  //紀錄當前在哪個路由
+  int currentPage = 1;
+  //紀錄上一頁使用者輸入的值
   late String txt;
   late WebViewController _controller;
+  //倒數計時器
+  late Timer timer;
+  //倒數的秒數
+  int counter = 5;
   @override
   Widget build(BuildContext context) {
     //引入provider
@@ -43,7 +55,7 @@ class _WebState extends State<Web> {
             Stack(
               children: [
                 WebView(
-                  initialUrl: url,
+                  initialUrl: getRoute(currentPage),
                   javascriptMode: JavascriptMode.unrestricted,
                   onWebViewCreated: (controller) {
                     _controller = controller;
@@ -61,6 +73,21 @@ class _WebState extends State<Web> {
                     //改變webview provider的載入狀態為載入完成
                     WebProvider provider = Provider.of<WebProvider>(context, listen: false);
                     provider.setLoadFinish(false);
+                    if(currentPage == 1){
+                      //目前正在第一頁
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("幾秒鐘後切換至下一頁，請稍後"),
+                      ));
+                      //開啟倒數計時器
+                      timer = Timer.periodic(const Duration(seconds: 1), (Timer t){
+                        counter--;
+                        if(counter == 0){
+                          //倒數完畢換頁
+                          changeRoute(2);
+                          timer.cancel();
+                        }
+                      });
+                    }
                   },
                   javascriptChannels: {
                     //由web端傳值回來
@@ -113,5 +140,18 @@ class _WebState extends State<Web> {
         );
       },
     );
+  }
+
+  //取得網頁路由
+  String getRoute(int pageNo){
+    String uri;
+    (pageNo == 1) ? uri = url + page1Url + "?input=" + txt : uri = url + page2Url;
+    return uri;
+  }
+
+  //變更網頁路由
+  changeRoute(int pageNo){
+    currentPage = pageNo;
+    _controller.loadUrl(getRoute(pageNo));
   }
 }
