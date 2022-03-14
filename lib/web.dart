@@ -131,7 +131,16 @@ class _WebState extends State<Web> {
                 Container(
                   child: (webProvider.isLoadFinish) ?
                   Container(
-                    child: const Center(child: CircularProgressIndicator(),),
+                    child: Column(children: [
+                      const Center(child: CircularProgressIndicator()),
+                      Container(
+                          margin: const EdgeInsets.only(top: 10.0),
+                          child: const Text("使用狀態控制模組Provider實現進度圈")
+                      ),
+                    ],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                    ),
                     color: Colors.black12
                   ) : Container(),
                 ),
