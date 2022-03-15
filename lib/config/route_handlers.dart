@@ -21,5 +21,5 @@ var rootHandler = Handler(
 
 var webHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
- return Web(txt: '',);
+ return Web(txt: params['txt']?.first ?? "",);
 });

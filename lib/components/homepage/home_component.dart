@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
+import 'package:flutterwebview/config/application.dart';
 import '../../config/routes.dart';
 import '../web/web.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -23,9 +24,13 @@ class HomeComponentState extends State<HomeComponent> {
     }
 
     //換頁
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Web(
-      txt: txt,
-    )));
+    // Navigator.push(context, MaterialPageRoute(builder: (context) => Web(
+    //   txt: txt,
+    // )));
+    Application.router.navigateTo(
+        context,
+        Routes.web + "?txt=" + Uri.encodeComponent(txt),
+    );
   }
 
   @override
