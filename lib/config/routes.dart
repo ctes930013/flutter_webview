@@ -11,13 +11,14 @@ import 'package:flutter/material.dart';
 import './route_handlers.dart';
 
 class Routes {
-  static String root = "/";
+  static String root = "/123";
   static String web = "/web";
   static String demoSimpleFixedTrans = "/demo/fixedtrans";
   static String demoFunc = "/demo/func";
   static String deepLink = "/message";
 
   static String linLaoShi = "/sssss";
+  static String linLaoShi2 = "/";
 
   static void configureRoutes(FluroRouter router) {
     router.notFoundHandler = Handler(
@@ -35,5 +36,7 @@ class Routes {
           print("SSS");
           return;
         }));
+
+    router.define(linLaoShi2, handler: platformChannelHandler);
   }
 }
