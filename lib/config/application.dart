@@ -6,9 +6,8 @@
  * Copyright (c) 2019 Yakka, LLC. All rights reserved.
  * See LICENSE for distribution and usage details.
  */
-import 'components/app/app_component.dart';
-import 'package:flutter/material.dart';
+import 'package:fluro/fluro.dart';
 
-void main() {
-  runApp(AppComponent());
+class Application {
+  static late final FluroRouter router;
 }

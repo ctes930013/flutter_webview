@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterwebview/result.dart';
-import 'package:flutterwebview/web_provider.dart';
+import 'package:flutterwebview/components/result/result.dart';
+import 'package:flutterwebview/config/web_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:async';
