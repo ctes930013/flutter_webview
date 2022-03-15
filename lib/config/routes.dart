@@ -25,13 +25,13 @@ class Routes {
       print("ROUTE WAS NOT FOUND !!!");
       return;
     });
+
     router.define(root, handler: rootHandler);
     router.define(web, handler: webHandler);
 
     router.define(linLaoShi, handler: Handler(
         handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
           // 如果是ios android
-
           print("SSS");
           return;
         }));
