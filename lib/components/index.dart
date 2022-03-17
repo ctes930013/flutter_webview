@@ -45,33 +45,31 @@ class IndexState extends State<Index> {
           Application.router.navigateTo(
             context,
             Routes.index + "?index=" + index.toString(),    //將點選的頁數傳入路由,
-            transition: getTransitionType(),
-            clearStack: true,    //清除前幾頁
+            transition: getTransitionType(index),
+            replace: true,    //替換下一頁為當前頁面
           );
         },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: '首頁'),
-          BottomNavigationBarItem(icon: Icon(Icons.access_alarm), label: '時程'),
-          BottomNavigationBarItem(icon: Icon(Icons.adb), label: '除錯'),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: '新增')
+          BottomNavigationBarItem(icon: Icon(Icons.arrow_upward_sharp), label: 'inFromBottom'),
+          BottomNavigationBarItem(icon: Icon(Icons.arrow_downward_sharp), label: 'inFromTop'),
+          BottomNavigationBarItem(icon: Icon(Icons.arrow_back_sharp), label: 'inFromRight'),
+          BottomNavigationBarItem(icon: Icon(Icons.arrow_forward_sharp), label: 'inFromLeft')
         ],
       ),
       body: pages[index],
     );
   }
 
-  //隨機挑選過場動畫效果
-  TransitionType getTransitionType(){
-    var list = [
-      TransitionType.inFromTop,
-      TransitionType.inFromLeft,
-      TransitionType.inFromBottom,
-      TransitionType.inFromRight,
-      TransitionType.fadeIn,
-      TransitionType.cupertinoFullScreenDialog,
-      TransitionType.cupertino
-    ];
-    var index = Random().nextInt(list.length);
-    return list[index];
+  //挑選過場動畫效果
+  TransitionType getTransitionType(int index){
+    if(index == 0){
+      return TransitionType.inFromBottom;
+    }else if(index == 1){
+      return TransitionType.inFromTop;
+    }else if(index == 2){
+      return TransitionType.inFromRight;
+    }else{
+      return TransitionType.inFromLeft;
+    }
   }
 }
