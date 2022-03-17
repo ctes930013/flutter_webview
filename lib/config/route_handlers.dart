@@ -2,6 +2,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterwebview/components/web/web.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutterwebview/config/api.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../components/index.dart';
@@ -25,5 +26,5 @@ var webHandler = Handler(
 
 
 launchURL() {
-  launch('https://www.himmy.cn/');
+  launch(API.apiUrl);
 }

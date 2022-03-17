@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterwebview/components/result/result.dart';
+import 'package:flutterwebview/config/api.dart';
 import 'package:flutterwebview/config/web_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -21,8 +22,6 @@ class Web extends StatefulWidget{
 
 class _WebState extends State<Web> {
 
-  //定義webview的主url
-  final String url = "http://34.146.148.69:8080/";
   //定義webview的第一頁url
   final String page1Url = "landing";
   //定義webview的第二頁url
@@ -56,7 +55,7 @@ class _WebState extends State<Web> {
             Stack(
               children: [
                 WebView(
-                  initialUrl: url,
+                  initialUrl: API.apiUrl,
                   javascriptMode: JavascriptMode.unrestricted,
                   onWebViewCreated: (controller) {
                     _controller = controller;
