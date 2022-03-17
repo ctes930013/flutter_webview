@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import './route_handlers.dart';
 
 class Routes {
-  static String root = "/";
+  static String root = "/";   //預設的首頁
   static String web = "/web";
   static String demoSimpleFixedTrans = "/demo/fixedtrans";
   static String demoFunc = "/demo/func";

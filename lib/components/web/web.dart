@@ -45,7 +45,8 @@ class _WebState extends State<Web> {
         //接收由上一頁傳入的值
         txt = widget.txt;
 
-        final WebProvider webProvider = Provider.of<WebProvider>(context);
+        //利用select監聽網頁狀態
+        bool isLoadFinish = context.select((WebProvider provider) => provider.isLoadFinish);
 
         return Scaffold(
           appBar: AppBar(
@@ -129,7 +130,7 @@ class _WebState extends State<Web> {
                 ),
                 //進度圈
                 Container(
-                  child: (webProvider.isLoadFinish) ?
+                  child: (isLoadFinish) ?
                   Container(
                     child: Column(children: [
                       const Center(child: CircularProgressIndicator()),

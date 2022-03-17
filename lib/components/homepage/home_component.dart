@@ -23,10 +23,7 @@ class HomeComponentState extends State<HomeComponent> {
       return;
     }
 
-    //換頁
-    // Navigator.push(context, MaterialPageRoute(builder: (context) => Web(
-    //   txt: txt,
-    // )));
+    //使用fluro路由換頁
     Application.router.navigateTo(
         context,
         Routes.web + "?txt=" + Uri.encodeComponent(txt),
