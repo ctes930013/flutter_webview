@@ -56,7 +56,7 @@ class _WebState extends State<Web> {
             Stack(
               children: [
                 WebView(
-                  initialUrl: getRoute(currentPage),
+                  initialUrl: url,
                   javascriptMode: JavascriptMode.unrestricted,
                   onWebViewCreated: (controller) {
                     _controller = controller;
@@ -74,21 +74,6 @@ class _WebState extends State<Web> {
                     //改變webview provider的載入狀態為載入完成
                     WebProvider provider = Provider.of<WebProvider>(context, listen: false);
                     provider.setLoadFinish(false);
-                    if(currentPage == 1){
-                      //目前正在第一頁
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("幾秒鐘後切換至下一頁，請稍後"),
-                      ));
-                      //開啟倒數計時器
-                      timer = Timer.periodic(const Duration(seconds: 1), (Timer t){
-                        counter--;
-                        if(counter == 0){
-                          //倒數完畢換頁
-                          changeRoute(2);
-                          timer.cancel();
-                        }
-                      });
-                    }
                   },
                   javascriptChannels: {
                     //由web端傳值回來
@@ -155,18 +140,5 @@ class _WebState extends State<Web> {
         );
       },
     );
-  }
-
-  //取得網頁路由
-  String getRoute(int pageNo){
-    String uri;
-    (pageNo == 1) ? uri = url + page1Url + "?input=" + txt : uri = url + page2Url;
-    return uri;
-  }
-
-  //變更網頁路由
-  changeRoute(int pageNo){
-    currentPage = pageNo;
-    _controller.loadUrl(getRoute(pageNo));
   }
 }
