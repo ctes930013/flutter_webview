@@ -13,7 +13,7 @@ import './route_handlers.dart';
 class Routes {
   static String root = "/";   //預設的首頁
   static String web = "/web";
-  static String demoSimpleFixedTrans = "/demo/fixedtrans";
+  static String index = "/index";
   static String demoFunc = "/demo/func";
   static String deepLink = "/message";
 
@@ -28,6 +28,7 @@ class Routes {
 
     router.define(root, handler: rootHandler);
     router.define(web, handler: webHandler);
+    router.define(index, handler: rootHandler);
 
     router.define(linLaoShi, handler: Handler(
         handlerFunc: (BuildContext? context, Map<String, List<String>> params) {

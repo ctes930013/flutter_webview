@@ -109,8 +109,12 @@ class _WebState extends State<Web> {
                     //print("URL: ${urlScheme}");
                     if(urlScheme.startsWith("flutterweb://")) {
                       //ex:flutterweb://result?value=cool
-                      String scheme = urlScheme.split("://")[0] ?? '';
-                      String host = urlScheme.split("://")[1] ?? '';
+                      var urlSchemeArr = urlScheme.split("://");
+                      if(urlSchemeArr.length < 2){
+                        return NavigationDecision.navigate;
+                      }
+                      String scheme = urlSchemeArr[0];
+                      String host = urlSchemeArr[1];
                       if(host.startsWith("result")){
                         var uri = Uri.dataFromString(urlScheme);  //converts string to a uri
                         //取得連結query參數
@@ -125,6 +129,7 @@ class _WebState extends State<Web> {
                         return NavigationDecision.prevent;
                       }
                     }
+                    //webview直接換頁
                     return NavigationDecision.navigate;
                   },
                 ),
