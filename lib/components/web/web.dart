@@ -44,9 +44,6 @@ class _WebState extends State<Web> {
         //接收由上一頁傳入的值
         txt = widget.txt;
 
-        //利用select監聽網頁狀態
-        bool isLoadFinish = context.select((WebProvider provider) => provider.isLoadFinish);
-
         return Scaffold(
           appBar: AppBar(
             title: const Text("WebView"),
@@ -117,22 +114,25 @@ class _WebState extends State<Web> {
                     return NavigationDecision.navigate;
                   },
                 ),
-                //進度圈
-                Container(
-                  child: (isLoadFinish) ?
-                  Container(
-                    child: Column(children: [
-                      const Center(child: CircularProgressIndicator()),
-                      Container(
-                          margin: const EdgeInsets.only(top: 10.0),
-                          child: const Text("使用狀態控制模組Provider實現進度圈")
-                      ),
-                    ],
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                    ),
-                    color: Colors.black12
-                  ) : Container(),
+                //利用select監聽網頁狀態進度圈
+                Selector<WebProvider, bool>(
+                  selector: (_, provider) => provider.isLoadFinish,
+                  builder: (context, isLoadFinish, child){
+                    return (isLoadFinish) ?
+                    Container(
+                        child: Column(children: [
+                          const Center(child: CircularProgressIndicator()),
+                          Container(
+                              margin: const EdgeInsets.only(top: 10.0),
+                              child: const Text("使用狀態控制模組Provider實現進度圈")
+                          ),
+                        ],
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                        ),
+                        color: Colors.black12
+                    ) : Container();
+                  },
                 ),
               ],
             ),
