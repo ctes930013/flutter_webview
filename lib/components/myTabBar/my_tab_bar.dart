@@ -27,15 +27,13 @@ class MyTabBar extends StatelessWidget {
             ),
             actions: <Widget>[
               IconButton(
-                  onPressed: () =>
-                      Application.router.navigateTo(context, Routes.search),
+                  onPressed: () => routerHandler(context, Routes.search),
                   icon: const Icon(
                     Icons.search,
                     color: Colors.yellow,
                   )),
               IconButton(
-                  onPressed: () =>
-                      Application.router.navigateTo(context, Routes.ranking),
+                  onPressed: () => routerHandler(context, Routes.ranking),
                   icon: const Icon(
                     Icons.military_tech,
                     color: Colors.lightGreenAccent,
