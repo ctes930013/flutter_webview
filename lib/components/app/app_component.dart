@@ -8,7 +8,7 @@
  */
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterwebview/components/utils/KeyboardUtils.dart';
+import 'package:flutterwebview/components/utils/keyboard_utils.dart';
 
 import '../../config/application.dart';
 import '../../config/routes.dart';

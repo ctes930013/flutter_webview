@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterwebview/components/gridview/home_grid.dart';
 
 const List<Tab> tabs = <Tab>[
   Tab(text: 'Tab A'),
@@ -19,8 +20,8 @@ class MyTabBar extends StatelessWidget {
               tabs: tabs,
             ),
           ),
-          body: const TabBarView(children: <Widget>[
-            Center(child: Text('tab A')),
+          body: TabBarView(children: <Widget>[
+            Center(child: HomeGrid()),
             Center(child: Text('tab B')),
             Center(child: Text('tab C')),
           ]),

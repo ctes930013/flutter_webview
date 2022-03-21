@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
-import 'package:flutterwebview/components/utils/KeyboardUtils.dart';
+import 'package:flutterwebview/components/utils/keyboard_utils.dart';
 import 'package:flutterwebview/config/application.dart';
 import '../../config/routes.dart';
 import '../web/web.dart';
