@@ -5,7 +5,7 @@ import 'package:flutterwebview/config/routes.dart';
 
 import 'package:flutterwebview/components/homepage/home_component.dart';
 import 'package:flutterwebview/config/application.dart';
-import './myTabbar/myTabBar.dart';
+import './myTabbar/my_tab_bar.dart';
 
 class Index extends StatefulWidget {
   //接收傳入的頁數
