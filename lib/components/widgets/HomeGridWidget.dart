@@ -58,12 +58,28 @@ class HomeGridWidget extends StatelessWidget{
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
-                  child: Text(
-                    homeGridData.count.toString(),
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 14
-                    ),
+                  child: Stack(
+                    alignment: Alignment.centerLeft,
+                    children: [
+                      Container(
+                        height: 8,
+                        width: 8,
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.pink,
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 12),
+                        child: Text(
+                          homeGridData.count.toString(),
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 14
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
