@@ -11,11 +11,13 @@ import 'package:flutter/material.dart';
 import './route_handlers.dart';
 
 class Routes {
-  static String root = "/";   //預設的首頁
+  static String root = "/"; //預設的首頁
   static String web = "/web";
   static String index = "/index";
   static String demoFunc = "/demo/func";
   static String deepLink = "/message";
+  static String ranking = "/ranking";
+  static String search = "search";
 
   static String linLaoShi = "/sssss";
 
@@ -29,12 +31,14 @@ class Routes {
     router.define(root, handler: rootHandler);
     router.define(web, handler: webHandler);
     router.define(index, handler: rootHandler);
+    router.define(ranking, handler: rankingHandler);
+    router.define(search, handler: searchHandler);
 
     router.define(linLaoShi, handler: Handler(
         handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-          // 如果是ios android
-          print("SSS");
-          return;
-        }));
+      // 如果是ios android
+      print("SSS");
+      return;
+    }));
   }
 }
