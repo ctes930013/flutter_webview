@@ -8,6 +8,7 @@
  */
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterwebview/components/utils/KeyboardUtils.dart';
 
 import '../../config/application.dart';
 import '../../config/routes.dart';
@@ -36,6 +37,15 @@ class AppComponentState extends State<AppComponent> {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: Application.router.generator,
+      builder: (context, child) => Scaffold(
+        //偵測只要點擊空白處就自動隱藏鍵盤
+        body: GestureDetector(
+          onTap: () {
+            KeyboardUtils.hideKeyboard(context);
+          },
+          child: child,
+        ),
+      ),
     );
 //    print("initial route = ${app.initialRoute}");
     return app;

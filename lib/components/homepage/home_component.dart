@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
+import 'package:flutterwebview/components/utils/KeyboardUtils.dart';
 import 'package:flutterwebview/config/application.dart';
 import '../../config/routes.dart';
 import '../web/web.dart';
@@ -65,6 +66,8 @@ class HomeComponentState extends State<HomeComponent> {
                       ),
                       color: Colors.blueAccent,
                       onPressed: () => {
+                        //隱藏鍵盤
+                        KeyboardUtils.hideKeyboard(context),
                         submit(context)
                       }
                   ),
