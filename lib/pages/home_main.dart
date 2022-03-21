@@ -10,8 +10,8 @@ const List<Tab> tabs = <Tab>[
   Tab(text: 'Tab C'),
 ];
 
-class MyTabBar extends StatelessWidget {
-  const MyTabBar({Key? key}) : super(key: key);
+class HomeMain extends StatelessWidget {
+  const HomeMain({Key? key}) : super(key: key);
 
   void routerHandler(context, routesName) {
     Application.router.navigateTo(context, routesName);

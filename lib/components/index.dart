@@ -5,7 +5,7 @@ import 'package:flutterwebview/config/routes.dart';
 
 import 'package:flutterwebview/components/homepage/home_component.dart';
 import 'package:flutterwebview/config/application.dart';
-import './myTabbar/my_tab_bar.dart';
+import '../pages/home_main.dart';
 
 class Index extends StatefulWidget {
   //接收傳入的頁數
@@ -21,7 +21,7 @@ class IndexState extends State<Index> {
   //紀錄傳入的頁數
   late int index;
   List<Widget> pages = [
-    const MyTabBar(),
+    const HomeMain(),
     HomeComponent(),
     HomeComponent(),
     HomeComponent()

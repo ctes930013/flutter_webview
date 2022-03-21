@@ -7,14 +7,16 @@ class GenerateData{
   //產生list array的資料
   static List<HomeGridData> getListData(){
     List<HomeGridData> data = [
-      HomeGridData("一分快三", "菜鳥", "台中縣", imgPath + "av.jpg", 15000),
+      HomeGridData("一分快三", "菜鳥", "台中縣", imgPath + "av1.jpeg", 15000),
       HomeGridData("一分快三", "超小", "高雄縣", imgPath + "av.jpg", 2000),
-      HomeGridData("一分快三", "A罩杯", "台中市", imgPath + "av.jpg", 18000),
+      HomeGridData("一分快三", "A罩杯", "台中市", imgPath + "av1.jpeg", 18000),
       HomeGridData("一分快三", "老窩", "桃園縣", imgPath + "av.jpg", 10000),
-      HomeGridData("一分快三", "迦納", "台北市", imgPath + "av.jpg", 15000),
+      HomeGridData("一分快三", "迦納", "台北市", imgPath + "av1.jpeg", 15000),
       HomeGridData("一分快三", "微星", "台北市", imgPath + "av.jpg", 17000),
-      HomeGridData("一分快三", "BBC", "台北市", imgPath + "av.jpg", 30000),
+      HomeGridData("一分快三", "BBC", "台北市", imgPath + "av1.jpeg", 30000),
       HomeGridData("一分快三", "老外", "新竹市", imgPath + "av.jpg", 35000),
+      HomeGridData("一分快三", "老邁", "台中市", imgPath + "av1.jpeg", 10000),
+      HomeGridData("一分快三", "MAX", "宜蘭縣", imgPath + "av.jpg", 38000),
     ];
 
     return data;

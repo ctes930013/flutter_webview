@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterwebview/components/data/home_grid_data.dart';
 
@@ -25,17 +24,19 @@ class HomeGridWidget extends StatelessWidget{
             margin: const EdgeInsets.all(5),
             child: Stack(
               children: [
+                //標題
                 Text(
                   homeGridData.title,
                   style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 14
+                      fontSize: 14,
                   ),
                 ),
                 Align(
                   alignment: Alignment.bottomLeft,
                   child: Stack(
                     children: [
+                      //作者
                       Text(
                         homeGridData.author,
                         style: const TextStyle(
@@ -45,6 +46,7 @@ class HomeGridWidget extends StatelessWidget{
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 20),
+                        //位置
                         child: Text(
                           homeGridData.locate,
                           style: const TextStyle(
@@ -71,6 +73,7 @@ class HomeGridWidget extends StatelessWidget{
                       ),
                       Container(
                         margin: const EdgeInsets.only(left: 12),
+                        //觀看數量
                         child: Text(
                           homeGridData.count.toString(),
                           style: const TextStyle(
