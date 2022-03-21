@@ -24,6 +24,15 @@ class HomeMain extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: const TabBar(
+              // indicatorColor: Colors.amber,
+              indicator: UnderlineTabIndicator(
+                  borderSide: BorderSide(
+                    width: 4,
+                    color: Colors.indigo,
+                  ),
+                  insets: EdgeInsets.symmetric(
+                    horizontal: 35,
+                  )),
               tabs: tabs,
             ),
             actions: <Widget>[
