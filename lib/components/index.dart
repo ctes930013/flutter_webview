@@ -21,7 +21,7 @@ class IndexState extends State<Index> {
   //紀錄傳入的頁數
   late int index;
   List<Widget> pages = [
-    const HomeMain(),
+    HomeMain(),
     HomeComponent(),
     HomeComponent(),
     HomeComponent()

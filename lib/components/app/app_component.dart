@@ -9,9 +9,12 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterwebview/components/utils/keyboard_utils.dart';
+// import 'package:flutterwebview/providers/theme_provider.dart';
+// import 'package:provider/provider.dart';
 
 import '../../config/application.dart';
 import '../../config/routes.dart';
+import '../../ui/theme.dart';
 
 class AppComponent extends StatefulWidget {
   @override
@@ -33,9 +36,9 @@ class AppComponentState extends State<AppComponent> {
     final app = MaterialApp(
       title: 'Fluro',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: Themes.light,
+      themeMode: ThemeMode.light,
+      darkTheme: Themes.dark,
       onGenerateRoute: Application.router.generator,
       builder: (context, child) => Scaffold(
         //偵測只要點擊空白處就自動隱藏鍵盤
