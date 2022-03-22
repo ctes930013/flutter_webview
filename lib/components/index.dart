@@ -9,6 +9,7 @@ import 'package:flutterwebview/config/routes.dart';
 import 'package:flutterwebview/components/homepage/home_component.dart';
 import 'package:flutterwebview/config/application.dart';
 import '../pages/home_main.dart';
+import 'widgets/home_bottom_bar_item_image.dart';
 
 class Index extends StatefulWidget {
   //接收傳入的頁數
@@ -32,6 +33,8 @@ class IndexState extends State<Index> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    HomeBottomBarItemImage homeBottomBarItemImage = HomeBottomBarItemImage();
+
     index = int.parse(widget.index);
     return Scaffold(
       //下方tab
@@ -45,60 +48,18 @@ class IndexState extends State<Index> {
           // setState(() {
           //
           // });
-          //使用fluro路由切換頁面
-          Application.router.navigateTo(
-            context,
-            Routes.index + "?index=" + index.toString(), //將點選的頁數傳入路由,
-            transition: getTransitionType(index),
-            replace: true, //替換下一頁為當前頁面
-          );
+          //倘若當前頁面與點選的頁面相同不做處理
+          if(index != this.index){
+            //使用fluro路由切換頁面
+            Application.router.navigateTo(
+              context,
+              Routes.index + "?index=" + index.toString(), //將點選的頁數傳入路由,
+              transition: getTransitionType(index),
+              replace: true, //替換下一頁為當前頁面
+            );
+          }
         },
-        items: [
-          BottomNavigationBarItem(
-              icon: CachedNetworkImage(
-                imageUrl: API.apiUrl + "img/arrow_top.85cad4f9.webp",
-                placeholder: (context, url) =>
-                Center(child: Image.asset(
-                  'lib/images/loading.gif',
-                  height: Constants.bottomNavImgHeight,
-                ),),
-                height: Constants.bottomNavImgHeight,
-              ),
-              label: 'webp'),
-          BottomNavigationBarItem(
-              icon: CachedNetworkImage(
-                imageUrl: API.apiUrl + "img/arrow_bottom.e49e7d70.webp",
-                placeholder: (context, url) =>
-                    Center(child: Image.asset(
-                      'lib/images/loading.gif',
-                      height: Constants.bottomNavImgHeight,
-                    ),),
-                height: Constants.bottomNavImgHeight,
-              ),
-              label: 'webp'),
-          BottomNavigationBarItem(
-              icon: CachedNetworkImage(
-                imageUrl: API.apiUrl + "img/arrow_left.a3fbba75.gif",
-                placeholder: (context, url) =>
-                    Center(child: Image.asset(
-                      'lib/images/loading.gif',
-                      height: Constants.bottomNavImgHeight,
-                    ),),
-                height: Constants.bottomNavImgHeight,
-              ),
-              label: 'gif'),
-          BottomNavigationBarItem(
-              icon: CachedNetworkImage(
-                imageUrl: API.apiUrl + "img/arrow_right.5a0b7bb6.gif",
-                placeholder: (context, url) =>
-                    Center(child: Image.asset(
-                      'lib/images/loading.gif',
-                      height: Constants.bottomNavImgHeight,
-                    ),),
-                height: Constants.bottomNavImgHeight,
-              ),
-              label: 'gif')
-        ],
+        items: getCurrentBottomBar(),
       ),
       body: pages[index],
     );
@@ -114,6 +75,44 @@ class IndexState extends State<Index> {
       return TransitionType.inFromRight;
     } else {
       return TransitionType.inFromLeft;
+    }
+  }
+
+  //設定底部選單的圖像文字
+  List<BottomNavigationBarItem> getCurrentBottomBar(){
+    HomeBottomBarItemImage homeBottomBarItemImage = HomeBottomBarItemImage();
+    if(index == 0){
+      //焦點在首頁
+      return [
+        homeBottomBarItemImage.setFirstPageItemGif(),
+        homeBottomBarItemImage.setSecondPageItem(),
+        homeBottomBarItemImage.setThirdPageItem(),
+        homeBottomBarItemImage.setFourthPageItem(),
+      ];
+    }else if(index == 1){
+      //焦點在第二頁
+      return [
+        homeBottomBarItemImage.setFirstPageItem(),
+        homeBottomBarItemImage.setSecondPageItemGif(),
+        homeBottomBarItemImage.setThirdPageItem(),
+        homeBottomBarItemImage.setFourthPageItem(),
+      ];
+    }else if(index == 2){
+      //焦點在第三頁
+      return [
+        homeBottomBarItemImage.setFirstPageItem(),
+        homeBottomBarItemImage.setSecondPageItem(),
+        homeBottomBarItemImage.setThirdPageItemGif(),
+        homeBottomBarItemImage.setFourthPageItem(),
+      ];
+    }else{
+      //焦點在最後一頁
+      return [
+        homeBottomBarItemImage.setFirstPageItem(),
+        homeBottomBarItemImage.setSecondPageItem(),
+        homeBottomBarItemImage.setThirdPageItem(),
+        homeBottomBarItemImage.setFourthPageItemGif(),
+      ];
     }
   }
 }

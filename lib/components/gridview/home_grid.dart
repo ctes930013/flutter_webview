@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterwebview/components/data/generate_data.dart';
 import 'package:flutterwebview/components/data/home_grid_data.dart';
-import 'package:flutterwebview/components/widgets/HomeGridWidget.dart';
+import 'package:flutterwebview/components/widgets/home_grid_widget.dart';
 
 //首頁的gridview
 class HomeGrid extends StatefulWidget{
