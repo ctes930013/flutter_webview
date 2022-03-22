@@ -7,9 +7,9 @@ import 'package:flutterwebview/config/web_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:async';
+import 'dart:io' show Platform;
 
-class Web extends StatefulWidget{
-
+class Web extends StatefulWidget {
   //接收由上一頁傳入的值
   final String txt;
 
@@ -22,7 +22,6 @@ class Web extends StatefulWidget{
 }
 
 class _WebState extends State<Web> {
-
   //定義webview的第一頁url
   final String page1Url = "landing";
   //定義webview的第二頁url
@@ -45,8 +44,7 @@ class _WebState extends State<Web> {
       appBar: AppBar(
         title: const Text("WebView"),
       ),
-      body:
-      Stack(
+      body: Stack(
         children: [
           WebViewUtils(
             initialUrl: API.apiUrl,
@@ -56,21 +54,26 @@ class _WebState extends State<Web> {
             //頁面準備加載
             onPageStarted: (url) {
               //改變webview provider的載入狀態為正在載入
-              WebProvider provider = Provider.of<WebProvider>(context, listen: false);
+              WebProvider provider =
+                  Provider.of<WebProvider>(context, listen: false);
               provider.setLoadFinish(true);
             },
             //頁面加載完成
             onPageFinished: (url) {
               //傳值到web端
-              _controller.runJavascript('fromFlutter("'+txt+'")');
+              _controller.runJavascript('fromFlutter("' + txt + '")');
               //改變webview provider的載入狀態為載入完成
-              WebProvider provider = Provider.of<WebProvider>(context, listen: false);
+              WebProvider provider =
+                  Provider.of<WebProvider>(context, listen: false);
               provider.setLoadFinish(false);
             },
             //偵測錯誤
-            onWebResourceError: (WebResourceError error){
-              print(error.errorCode);
-              if(error.errorCode == -8){
+            onWebResourceError: (WebResourceError error) {
+              WebProvider provider =
+                  Provider.of<WebProvider>(context, listen: false);
+              provider.setLoadFinish(false);
+              if ((Platform.isAndroid && error.errorCode == -8) ||
+                  (Platform.isIOS && error.errorCode == -1009)) {
                 //timeout
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text("連線逾時"),
@@ -87,31 +90,34 @@ class _WebState extends State<Web> {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text("Web端回傳的值: ${message.message}"),
                     ));
-                  }
-              )
+                  })
             },
-            navigationDelegate: (NavigationRequest request){
+            navigationDelegate: (NavigationRequest request) {
               //檢查點擊事件連結的開頭
               String urlScheme = request.url;
               //print("URL: ${urlScheme}");
-              if(urlScheme.startsWith("flutterweb://")) {
+              if (urlScheme.startsWith("flutterweb://")) {
                 //ex:flutterweb://result?value=cool
                 var urlSchemeArr = urlScheme.split("://");
-                if(urlSchemeArr.length < 2){
+                if (urlSchemeArr.length < 2) {
                   return NavigationDecision.navigate;
                 }
                 String scheme = urlSchemeArr[0];
                 String host = urlSchemeArr[1];
-                if(host.startsWith("result")){
-                  var uri = Uri.dataFromString(urlScheme);  //converts string to a uri
+                if (host.startsWith("result")) {
+                  var uri =
+                      Uri.dataFromString(urlScheme); //converts string to a uri
                   //取得連結query參數
                   String value = uri.queryParameters["value"] ?? "";
                   //移除該頁面
                   //Navigator.pop(context);
                   //換頁
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Result(
-                    value: value,
-                  )));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Result(
+                                value: value,
+                              )));
                   //webview不要換頁
                   return NavigationDecision.prevent;
                 }
@@ -123,21 +129,21 @@ class _WebState extends State<Web> {
           //利用select監聽網頁狀態進度圈
           Selector<WebProvider, bool>(
             selector: (_, provider) => provider.isLoadFinish,
-            builder: (context, isLoadFinish, child){
-              return (isLoadFinish) ?
-              Container(
-                  child: Column(children: [
-                    const Center(child: CircularProgressIndicator()),
-                    Container(
-                        margin: const EdgeInsets.only(top: 10.0),
-                        child: const Text("使用狀態控制模組Provider實現進度圈")
-                    ),
-                  ],
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                  ),
-                  color: Colors.black12
-              ) : Container();
+            builder: (context, isLoadFinish, child) {
+              return (isLoadFinish)
+                  ? Container(
+                      child: Column(
+                        children: [
+                          const Center(child: CircularProgressIndicator()),
+                          Container(
+                              margin: const EdgeInsets.only(top: 10.0),
+                              child: const Text("使用狀態控制模組Provider實現進度圈")),
+                        ],
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                      ),
+                      color: Colors.black12)
+                  : Container();
             },
           ),
         ],
