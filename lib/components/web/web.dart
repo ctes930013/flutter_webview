@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterwebview/components/result/result.dart';
+import 'package:flutterwebview/components/utils/webview_utils.dart';
 import 'package:flutterwebview/config/api.dart';
 import 'package:flutterwebview/config/web_provider.dart';
 import 'package:provider/provider.dart';
@@ -47,9 +48,8 @@ class _WebState extends State<Web> {
       body:
       Stack(
         children: [
-          WebView(
+          WebViewUtils(
             initialUrl: API.apiUrl,
-            javascriptMode: JavascriptMode.unrestricted,
             onWebViewCreated: (controller) {
               _controller = controller;
             },
@@ -66,6 +66,16 @@ class _WebState extends State<Web> {
               //改變webview provider的載入狀態為載入完成
               WebProvider provider = Provider.of<WebProvider>(context, listen: false);
               provider.setLoadFinish(false);
+            },
+            //偵測錯誤
+            onWebResourceError: (WebResourceError error){
+              print(error.errorCode);
+              if(error.errorCode == -8){
+                //timeout
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text("連線逾時"),
+                ));
+              }
             },
             javascriptChannels: {
               //由web端傳值回來
