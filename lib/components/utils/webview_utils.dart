@@ -2,7 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
+import 'package:flutterwebview/config/web_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'dart:io' show Platform;
 
 class WebViewUtils extends WebView{
   const WebViewUtils({
@@ -47,5 +50,24 @@ class WebViewUtils extends WebView{
       allowsInlineMediaPlayback: allowsInlineMediaPlayback,
       backgroundColor: backgroundColor,
   );
+
+  //連線逾時處理
+  static void timeoutHandler(BuildContext context, WebResourceError error){
+    statusControl(context, false);
+    if ((Platform.isAndroid && error.errorCode == -8) ||
+        (Platform.isIOS && error.errorCode == -1009)) {
+      //timeout
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("連線逾時"),
+      ));
+    }
+  }
+
+  //控制網頁狀態管理
+  static void statusControl(BuildContext context, bool isFinish){
+    WebProvider provider =
+    Provider.of<WebProvider>(context, listen: false);
+    provider.setLoadFinish(isFinish);
+  }
 
 }

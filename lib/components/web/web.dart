@@ -7,7 +7,6 @@ import 'package:flutterwebview/config/web_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:async';
-import 'dart:io' show Platform;
 
 class Web extends StatefulWidget {
   //接收由上一頁傳入的值
@@ -54,31 +53,18 @@ class _WebState extends State<Web> {
             //頁面準備加載
             onPageStarted: (url) {
               //改變webview provider的載入狀態為正在載入
-              WebProvider provider =
-                  Provider.of<WebProvider>(context, listen: false);
-              provider.setLoadFinish(true);
+              WebViewUtils.statusControl(context, true);
             },
             //頁面加載完成
             onPageFinished: (url) {
               //傳值到web端
               _controller.runJavascript('fromFlutter("' + txt + '")');
               //改變webview provider的載入狀態為載入完成
-              WebProvider provider =
-                  Provider.of<WebProvider>(context, listen: false);
-              provider.setLoadFinish(false);
+              WebViewUtils.statusControl(context, false);
             },
             //偵測錯誤
             onWebResourceError: (WebResourceError error) {
-              WebProvider provider =
-                  Provider.of<WebProvider>(context, listen: false);
-              provider.setLoadFinish(false);
-              if ((Platform.isAndroid && error.errorCode == -8) ||
-                  (Platform.isIOS && error.errorCode == -1009)) {
-                //timeout
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text("連線逾時"),
-                ));
-              }
+              WebViewUtils.timeoutHandler(context, error);
             },
             javascriptChannels: {
               //由web端傳值回來
