@@ -1,6 +1,9 @@
 import 'dart:math';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterwebview/config/api.dart';
+import 'package:flutterwebview/config/constants.dart';
 import 'package:flutterwebview/config/routes.dart';
 
 import 'package:flutterwebview/components/homepage/home_component.dart';
@@ -52,27 +55,47 @@ class IndexState extends State<Index> {
         },
         items: [
           BottomNavigationBarItem(
-              icon: Image.asset(
-                'lib/images/arrow_top.webp',
-                height: 30.0,
+              icon: CachedNetworkImage(
+                imageUrl: API.apiUrl + "img/arrow_top.85cad4f9.webp",
+                placeholder: (context, url) =>
+                Center(child: Image.asset(
+                  'lib/images/loading.gif',
+                  height: Constants.bottomNavImgHeight,
+                ),),
+                height: Constants.bottomNavImgHeight,
               ),
               label: 'webp'),
           BottomNavigationBarItem(
-              icon: Image.asset(
-                'lib/images/arrow_bottom.webp',
-                height: 30.0,
+              icon: CachedNetworkImage(
+                imageUrl: API.apiUrl + "img/arrow_bottom.e49e7d70.webp",
+                placeholder: (context, url) =>
+                    Center(child: Image.asset(
+                      'lib/images/loading.gif',
+                      height: Constants.bottomNavImgHeight,
+                    ),),
+                height: Constants.bottomNavImgHeight,
               ),
               label: 'webp'),
           BottomNavigationBarItem(
-              icon: Image.asset(
-                'lib/images/arrow_left.gif',
-                height: 30.0,
+              icon: CachedNetworkImage(
+                imageUrl: API.apiUrl + "img/arrow_left.a3fbba75.gif",
+                placeholder: (context, url) =>
+                    Center(child: Image.asset(
+                      'lib/images/loading.gif',
+                      height: Constants.bottomNavImgHeight,
+                    ),),
+                height: Constants.bottomNavImgHeight,
               ),
               label: 'gif'),
           BottomNavigationBarItem(
-              icon: Image.asset(
-                'lib/images/arrow_right.gif',
-                height: 30.0,
+              icon: CachedNetworkImage(
+                imageUrl: API.apiUrl + "img/arrow_right.5a0b7bb6.gif",
+                placeholder: (context, url) =>
+                    Center(child: Image.asset(
+                      'lib/images/loading.gif',
+                      height: Constants.bottomNavImgHeight,
+                    ),),
+                height: Constants.bottomNavImgHeight,
               ),
               label: 'gif')
         ],
