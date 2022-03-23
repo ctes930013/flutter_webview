@@ -7,6 +7,7 @@
  * See LICENSE for distribution and usage details.
  */
 import 'package:flutterwebview/config/web_provider.dart';
+import 'package:flutterwebview/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'components/app/app_component.dart';
@@ -15,13 +16,16 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     //引入provider
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider<WebProvider>(
-            create: (context) => WebProvider(false),
-          ),
-        ],
-        child: AppComponent(),
-      ),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<WebProvider>(
+          create: (context) => WebProvider(false),
+        ),
+        ChangeNotifierProvider<ThemeProvider>(
+          create: (context) => ThemeProvider(false),
+        ),
+      ],
+      child: AppComponent(),
+    ),
   );
 }
