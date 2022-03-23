@@ -2,26 +2,21 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterwebview/config/api.dart';
 import 'package:flutterwebview/config/constants.dart';
+import 'package:gif_view/gif_view.dart';
 
 class HomeBottomBarItemImage{
 
   //取得第一頁動態
   BottomNavigationBarItem setFirstPageItemGif(){
     return BottomNavigationBarItem(
-        icon: CachedNetworkImage(
-          imageUrl: API.apiUrl + "img/arrow_top.85cad4f9.webp",
-          //加載中預覽圖
-          placeholder: (context, url) =>
-              Center(child: Image.asset(
-                'lib/images/loading.gif',
-                height: Constants.bottomNavImgHeight,
-              ),),
-          //加載失敗預覽圖
-          errorWidget: (context, url, error) =>
-          const Center(child:
-          Icon(Icons.error)
-          ),
+        icon: GifView.network(
+          API.apiUrl + "img/arrow_top.85cad4f9.webp",
           height: Constants.bottomNavImgHeight,
+          progress: Center(child: Image.asset(
+            'lib/images/loading.gif',
+            height: Constants.bottomNavImgHeight,
+          ),),
+          loop: false,     //不要重複撥放
         ),
         label: 'webp'
     );
@@ -30,18 +25,14 @@ class HomeBottomBarItemImage{
   //取得第二頁動態
   BottomNavigationBarItem setSecondPageItemGif(){
     return BottomNavigationBarItem(
-        icon: CachedNetworkImage(
-          imageUrl: API.apiUrl + "img/arrow_bottom.e49e7d70.webp",
-          placeholder: (context, url) =>
-              Center(child: Image.asset(
-                'lib/images/loading.gif',
-                height: Constants.bottomNavImgHeight,
-              ),),
-          errorWidget: (context, url, error) =>
-          const Center(child:
-          Icon(Icons.error)
-          ),
+        icon: GifView.network(
+          API.apiUrl + "img/arrow_bottom.e49e7d70.webp",
           height: Constants.bottomNavImgHeight,
+          progress: Center(child: Image.asset(
+            'lib/images/loading.gif',
+            height: Constants.bottomNavImgHeight,
+          ),),
+          loop: false,
         ),
         label: 'webp'
     );
@@ -50,18 +41,14 @@ class HomeBottomBarItemImage{
   //取得第三頁動態
   BottomNavigationBarItem setThirdPageItemGif(){
     return BottomNavigationBarItem(
-        icon: CachedNetworkImage(
-          imageUrl: API.apiUrl + "img/arrow_left.a3fbba75.gif",
-          placeholder: (context, url) =>
-              Center(child: Image.asset(
-                'lib/images/loading.gif',
-                height: Constants.bottomNavImgHeight,
-              ),),
-          errorWidget: (context, url, error) =>
-          const Center(child:
-          Icon(Icons.error)
-          ),
+        icon: GifView.network(
+          API.apiUrl + "img/arrow_left.a3fbba75.gif",
           height: Constants.bottomNavImgHeight,
+          progress: Center(child: Image.asset(
+            'lib/images/loading.gif',
+            height: Constants.bottomNavImgHeight,
+          ),),
+          loop: false,
         ),
         label: 'gif'
     );
@@ -70,18 +57,14 @@ class HomeBottomBarItemImage{
   //取得第四頁動態
   BottomNavigationBarItem setFourthPageItemGif(){
     return BottomNavigationBarItem(
-        icon: CachedNetworkImage(
-          imageUrl: API.apiUrl + "img/arrow_right.5a0b7bb6.gif",
-          placeholder: (context, url) =>
-              Center(child: Image.asset(
-                'lib/images/loading.gif',
-                height: Constants.bottomNavImgHeight,
-              ),),
-          errorWidget: (context, url, error) =>
-          const Center(child:
-          Icon(Icons.error)
-          ),
+        icon: GifView.network(
+          API.apiUrl + "img/arrow_right.5a0b7bb6.gif",
           height: Constants.bottomNavImgHeight,
+          progress: Center(child: Image.asset(
+            'lib/images/loading.gif',
+            height: Constants.bottomNavImgHeight,
+          ),),
+          loop: false,
         ),
         label: 'gif'
     );
