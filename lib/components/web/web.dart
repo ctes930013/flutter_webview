@@ -7,6 +7,7 @@ import 'package:flutterwebview/providers/web_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:async';
+import 'package:flutterwebview/generated/l10n.dart';
 
 class Web extends StatefulWidget {
   //接收由上一頁傳入的值
@@ -74,7 +75,8 @@ class _WebState extends State<Web> {
                     //print("Result: ${message.message}");
                     //show web message
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("Web端回傳的值: ${message.message}"),
+                      content: Text(
+                          "${S.of(context).value_from_web}: ${message.message}"),
                     ));
                   })
             },
@@ -123,7 +125,8 @@ class _WebState extends State<Web> {
                           const Center(child: CircularProgressIndicator()),
                           Container(
                               margin: const EdgeInsets.only(top: 10.0),
-                              child: const Text("使用狀態控制模組Provider實現進度圈")),
+                              child: Text(
+                                  S.of(context).use_provider_control_load)),
                         ],
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,

@@ -10,22 +10,22 @@ class HomeComponent extends StatefulWidget {
 }
 
 class HomeComponentState extends State<HomeComponent> {
-  TextEditingController keyText = TextEditingController();      //欄位輸入框
+  TextEditingController keyText = TextEditingController(); //欄位輸入框
 
   //按鈕觸發事件
   void submit(context) {
     String txt = keyText.value.text;
-    if(txt == "") {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("請勿為空"),
+    if (txt == "") {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(S.of(context).do_not_leave_blank),
       ));
       return;
     }
 
     //使用fluro路由換頁
     Application.router.navigateTo(
-        context,
-        Routes.web + "?txt=" + Uri.encodeComponent(txt),
+      context,
+      Routes.web + "?txt=" + Uri.encodeComponent(txt),
     );
   }
 
@@ -37,8 +37,7 @@ class HomeComponentState extends State<HomeComponent> {
         appBar: AppBar(
           title: Text(S.of(context).second_page_title),
         ),
-        body:
-        Container(
+        body: Container(
           margin: const EdgeInsets.all(15),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -55,24 +54,18 @@ class HomeComponentState extends State<HomeComponent> {
                 Container(
                   margin: const EdgeInsets.all(15),
                   child: MaterialButton(
-                      child: Text(
-                          S.of(context).second_page_btn_text,
+                      child: Text(S.of(context).second_page_btn_text,
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Colors.white
-                          )
-                      ),
+                              color: Colors.white)),
                       color: Colors.blueAccent,
                       onPressed: () => {
-                        //隱藏鍵盤
-                        KeyboardUtils.hideKeyboard(context),
-                        submit(context)
-                      }
-                  ),
+                            //隱藏鍵盤
+                            KeyboardUtils.hideKeyboard(context),
+                            submit(context)
+                          }),
                 )
-              ]
-          ),
-        )
-    );
+              ]),
+        ));
   }
 }

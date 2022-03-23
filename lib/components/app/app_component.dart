@@ -40,7 +40,8 @@ class AppComponentState extends State<AppComponent> {
     bool isNightMode = provider.isNightMode;
     ThemeMode themeMode = isNightMode ? ThemeMode.dark : ThemeMode.light;
 
-    Locale locale = context.select((LanguageProvider provider) => provider.getLocale);
+    Locale locale =
+        context.select((LanguageProvider provider) => provider.getLocale);
 
     final app = MaterialApp(
       title: 'Fluro',
