@@ -1,7 +1,7 @@
 {
   "second_page_title": "原生App",
   "second_page_edit_hint": "請輸入要傳入WebView的值",
-  "second_page_btn_text": "送出"，
+  "second_page_btn_text": "送出",
   "taichung_city": "台中",
   "kaoshiung_city": "高雄",
   "taoyuan_city": "桃園",
@@ -12,5 +12,5 @@
   "game_one_min_fast_three": "一分快三",
   "do_not_leave_blank": "請勿為空",
   "value_from_web": "Web端回傳的值",
-  "use_provider_control_load": "使用狀態控制模組Provider實現進度圈",
+  "use_provider_control_load": "使用狀態控制模組Provider實現進度圈"
 }

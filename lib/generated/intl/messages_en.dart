@@ -22,9 +22,24 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "a_cup": MessageLookupByLibrary.simpleMessage("A Cup"),
+        "do_not_leave_blank": MessageLookupByLibrary.simpleMessage(
+            "do not leave any field blank"),
+        "game_one_min_fast_three":
+            MessageLookupByLibrary.simpleMessage("Play Game"),
+        "kaoshiung_city": MessageLookupByLibrary.simpleMessage("Kaoshiung"),
+        "lao_wo": MessageLookupByLibrary.simpleMessage("Old Fellow"),
         "second_page_btn_text": MessageLookupByLibrary.simpleMessage("Send"),
         "second_page_edit_hint": MessageLookupByLibrary.simpleMessage(
             "Please enter the value to be passed to the WebView"),
-        "second_page_title": MessageLookupByLibrary.simpleMessage("Native App")
+        "second_page_title": MessageLookupByLibrary.simpleMessage("Native App"),
+        "taichung_city": MessageLookupByLibrary.simpleMessage("Taichung"),
+        "taoyuan_city": MessageLookupByLibrary.simpleMessage("Taoyuan"),
+        "tiny_cup": MessageLookupByLibrary.simpleMessage("Tiny Cup"),
+        "use_provider_control_load": MessageLookupByLibrary.simpleMessage(
+            "The loading process is controlled by Provider"),
+        "value_from_web": MessageLookupByLibrary.simpleMessage(
+            "the value passed from web side"),
+        "xinzhu_city": MessageLookupByLibrary.simpleMessage("Xinzhu")
       };
 }

@@ -79,6 +79,116 @@ class S {
       args: [],
     );
   }
+
+  /// `Taichung`
+  String get taichung_city {
+    return Intl.message(
+      'Taichung',
+      name: 'taichung_city',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kaoshiung`
+  String get kaoshiung_city {
+    return Intl.message(
+      'Kaoshiung',
+      name: 'kaoshiung_city',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Taoyuan`
+  String get taoyuan_city {
+    return Intl.message(
+      'Taoyuan',
+      name: 'taoyuan_city',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Xinzhu`
+  String get xinzhu_city {
+    return Intl.message(
+      'Xinzhu',
+      name: 'xinzhu_city',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tiny Cup`
+  String get tiny_cup {
+    return Intl.message(
+      'Tiny Cup',
+      name: 'tiny_cup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A Cup`
+  String get a_cup {
+    return Intl.message(
+      'A Cup',
+      name: 'a_cup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Old Fellow`
+  String get lao_wo {
+    return Intl.message(
+      'Old Fellow',
+      name: 'lao_wo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Play Game`
+  String get game_one_min_fast_three {
+    return Intl.message(
+      'Play Game',
+      name: 'game_one_min_fast_three',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `do not leave any field blank`
+  String get do_not_leave_blank {
+    return Intl.message(
+      'do not leave any field blank',
+      name: 'do_not_leave_blank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `the value passed from web side`
+  String get value_from_web {
+    return Intl.message(
+      'the value passed from web side',
+      name: 'value_from_web',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The loading process is controlled by Provider`
+  String get use_provider_control_load {
+    return Intl.message(
+      'The loading process is controlled by Provider',
+      name: 'use_provider_control_load',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

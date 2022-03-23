@@ -6,7 +6,8 @@
  * Copyright (c) 2019 Yakka, LLC. All rights reserved.
  * See LICENSE for distribution and usage details.
  */
-import 'package:flutterwebview/config/web_provider.dart';
+import 'package:flutterwebview/providers/language_provider.dart';
+import 'package:flutterwebview/providers/web_provider.dart';
 import 'package:flutterwebview/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +24,9 @@ void main() {
         ),
         ChangeNotifierProvider<ThemeProvider>(
           create: (context) => ThemeProvider(false),
+        ),
+        ChangeNotifierProvider<LanguageProvider>(
+          create: (context) => LanguageProvider(),
         ),
       ],
       child: AppComponent(),

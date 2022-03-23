@@ -29,8 +29,6 @@ class IndexState extends State<Index> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    HomeBottomBarItemImage homeBottomBarItemImage = HomeBottomBarItemImage();
-
     index = int.parse(widget.index);
     return Scaffold(
       //下方tab

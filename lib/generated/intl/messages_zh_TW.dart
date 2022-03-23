@@ -22,9 +22,21 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "a_cup": MessageLookupByLibrary.simpleMessage("A罩杯"),
+        "do_not_leave_blank": MessageLookupByLibrary.simpleMessage("請勿為空"),
+        "game_one_min_fast_three": MessageLookupByLibrary.simpleMessage("一分快三"),
+        "kaoshiung_city": MessageLookupByLibrary.simpleMessage("高雄"),
+        "lao_wo": MessageLookupByLibrary.simpleMessage("老窩"),
         "second_page_btn_text": MessageLookupByLibrary.simpleMessage("送出"),
         "second_page_edit_hint":
             MessageLookupByLibrary.simpleMessage("請輸入要傳入WebView的值"),
-        "second_page_title": MessageLookupByLibrary.simpleMessage("原生App")
+        "second_page_title": MessageLookupByLibrary.simpleMessage("原生App"),
+        "taichung_city": MessageLookupByLibrary.simpleMessage("台中"),
+        "taoyuan_city": MessageLookupByLibrary.simpleMessage("桃園"),
+        "tiny_cup": MessageLookupByLibrary.simpleMessage("超小"),
+        "use_provider_control_load":
+            MessageLookupByLibrary.simpleMessage("使用狀態控制模組Provider實現進度圈"),
+        "value_from_web": MessageLookupByLibrary.simpleMessage("Web端回傳的值"),
+        "xinzhu_city": MessageLookupByLibrary.simpleMessage("新竹")
       };
 }

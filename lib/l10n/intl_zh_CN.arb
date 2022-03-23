@@ -12,5 +12,5 @@
   "game_one_min_fast_three": "一分快三",
   "do_not_leave_blank": "请勿为空",
   "value_from_web": "Web端回传的值",
-  "use_provider_control_load": "使用状态控制模组Provider实现进度",
+  "use_provider_control_load": "使用状态控制模组Provider实现进度"
 }

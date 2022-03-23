@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutterwebview/components/utils/keyboard_utils.dart';
 import 'package:flutterwebview/generated/l10n.dart';
+import 'package:flutterwebview/providers/language_provider.dart';
 import 'package:flutterwebview/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -39,6 +40,8 @@ class AppComponentState extends State<AppComponent> {
     bool isNightMode = provider.isNightMode;
     ThemeMode themeMode = isNightMode ? ThemeMode.dark : ThemeMode.light;
 
+    Locale locale = context.select((LanguageProvider provider) => provider.getLocale);
+
     final app = MaterialApp(
       title: 'Fluro',
       //多國語言配置
@@ -53,6 +56,8 @@ class AppComponentState extends State<AppComponent> {
         print(locales);
         return;
       },
+      //當前語系
+      locale: locale,
       debugShowCheckedModeBanner: false,
       theme: Themes.light,
       themeMode: themeMode,

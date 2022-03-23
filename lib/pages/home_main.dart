@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
+import 'package:flutterwebview/pages/checkout_language.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutterwebview/components/gridview/home_grid.dart';
@@ -85,7 +86,7 @@ class _HomeMainState extends State<HomeMain> {
           ),
           body: TabBarView(children: <Widget>[
             Center(child: HomeGrid()),
-            Center(child: Text('tab B')),
+            Center(child: CheckoutLanguage()),
             Center(child: Text('tab C')),
           ]),
         ));
