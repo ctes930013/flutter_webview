@@ -19,7 +19,7 @@ class HomeMain extends StatefulWidget {
 }
 
 class _HomeMainState extends State<HomeMain> {
-  bool isNightMode = false;
+  // bool isNightMode = false;
   IconData toNightMode = Icons.shield_moon;
   IconData toLightMode = Icons.sunny;
 
@@ -29,6 +29,10 @@ class _HomeMainState extends State<HomeMain> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider provider = Provider.of<ThemeProvider>(context, listen: false);
+    bool isNightMode = provider.isNightMode;
+    // print(provider.isNightMode);
+
     return DefaultTabController(
         length: tabs.length,
         child: Scaffold(
@@ -63,10 +67,8 @@ class _HomeMainState extends State<HomeMain> {
                 onPressed: () {
                   setState(() {
                     isNightMode = !isNightMode;
-                    ThemeProvider provider =
-                        Provider.of<ThemeProvider>(context, listen: false);
                     provider.setNightMode(isNightMode);
-                    print(Provider.of<ThemeProvider>(context, listen: false));
+                    // print(provider.isNightMode);
                   });
                 },
                 icon: isNightMode
