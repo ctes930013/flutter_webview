@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fluro/fluro.dart';
 import 'package:flutterwebview/components/utils/keyboard_utils.dart';
 import 'package:flutterwebview/config/application.dart';
 import '../../config/routes.dart';
-import '../web/web.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutterwebview/generated/l10n.dart';
 
 class HomeComponent extends StatefulWidget {
   @override
@@ -37,7 +35,7 @@ class HomeComponentState extends State<HomeComponent> {
     //debugPaintSizeEnabled = true;
     return Scaffold(
         appBar: AppBar(
-          title: const Text("原生App"),
+          title: Text(S.of(context).second_page_title),
         ),
         body:
         Container(
@@ -49,17 +47,17 @@ class HomeComponentState extends State<HomeComponent> {
                 TextField(
                   controller: keyText,
                   keyboardType: TextInputType.text,
-                  decoration: const InputDecoration(
-                    icon: Icon(Icons.title),
-                    labelText: "請輸入要傳入WebView的值",
+                  decoration: InputDecoration(
+                    icon: const Icon(Icons.title),
+                    labelText: S.of(context).second_page_edit_hint,
                   ),
                 ),
                 Container(
                   margin: const EdgeInsets.all(15),
                   child: MaterialButton(
-                      child: const Text(
-                          '送出',
-                          style: TextStyle(
+                      child: Text(
+                          S.of(context).second_page_btn_text,
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.white
                           )

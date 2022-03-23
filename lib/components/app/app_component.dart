@@ -8,7 +8,9 @@
  */
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutterwebview/components/utils/keyboard_utils.dart';
+import 'package:flutterwebview/generated/l10n.dart';
 import 'package:flutterwebview/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -39,6 +41,18 @@ class AppComponentState extends State<AppComponent> {
 
     final app = MaterialApp(
       title: 'Fluro',
+      //多國語言配置
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
+      localeListResolutionCallback: (locales, supportedLocales) {
+        print(locales);
+        return;
+      },
       debugShowCheckedModeBanner: false,
       theme: Themes.light,
       themeMode: themeMode,
