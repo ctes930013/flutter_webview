@@ -1,11 +1,11 @@
 //產生自定義假資料
 import 'package:flutterwebview/components/data/home_grid_data.dart';
+// import 'package:flutterwebview/generated/l10n.dart';
 
-class GenerateData{
-
+class GenerateData {
   static const String imgPath = 'lib/images/';
   //產生list array的資料
-  static List<HomeGridData> getListData(){
+  static List<HomeGridData> getListData() {
     List<HomeGridData> data = [
       HomeGridData("一分快三", "菜鳥", "台中縣", imgPath + "av1.jpeg", 15000),
       HomeGridData("一分快三", "超小", "高雄縣", imgPath + "av.jpg", 2000),

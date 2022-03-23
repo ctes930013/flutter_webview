@@ -1,5 +1,16 @@
 {
   "second_page_title": "原生App",
   "second_page_edit_hint": "请输入要传入WebView的值",
-  "second_page_btn_text": "送出"
+  "second_page_btn_text": "送出",
+  "taichung_city": "台中",
+  "kaoshiung_city": "高雄",
+  "taoyuan_city": "桃园",
+  "xinzhu_city": "新竹",
+  "tiny_cup": "超小",
+  "a_cup": "A罩杯",
+  "lao_wo":"老窝",
+  "game_one_min_fast_three": "一分快三",
+  "do_not_leave_blank": "请勿为空",
+  "value_from_web": "Web端回传的值",
+  "use_provider_control_load": "使用状态控制模组Provider实现进度",
 }

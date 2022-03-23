@@ -1,5 +1,16 @@
 {
   "second_page_title": "Native App",
   "second_page_edit_hint": "Please enter the value to be passed to the WebView",
-  "second_page_btn_text": "Send"
+  "second_page_btn_text": "Send",
+  "taichung_city": "Taichung",
+  "kaoshiung_city": "Kaoshiung",
+  "taoyuan_city": "Taoyuan",
+  "xinzhu_city": "Xinzhu",
+  "tiny_cup": "Tiny Cup",
+  "a_cup": "A Cup",
+  "lao_wo":"Old Fellow",
+  "game_one_min_fast_three": "Play Game",
+  "do_not_leave_blank": "do not leave any field blank",
+  "value_from_web": "the value passed from web side",
+  "use_provider_control_load": "The loading process is controlled by Provider",
 }
