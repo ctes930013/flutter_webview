@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterwebview/components/utils/btn_delay_utils.dart';
 import 'package:flutterwebview/components/utils/keyboard_utils.dart';
 import 'package:flutterwebview/config/application.dart';
 import '../../config/routes.dart';
@@ -12,8 +13,14 @@ class HomeComponent extends StatefulWidget {
 class HomeComponentState extends State<HomeComponent> {
   TextEditingController keyText = TextEditingController(); //欄位輸入框
 
+  BtnDelayUtils btnDelayUtils = BtnDelayUtils(4);
+
   //按鈕觸發事件
   void submit(context) {
+    //避免重複點擊
+    if(!btnDelayUtils.intervalClick()){
+      return;
+    }
     String txt = keyText.value.text;
     if (txt == "") {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
