@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluro/fluro.dart';
 import 'package:flutterwebview/pages/checkout_language.dart';
 import 'package:provider/provider.dart';
 
@@ -9,9 +8,18 @@ import 'package:flutterwebview/config/routes.dart';
 import 'package:flutterwebview/providers/theme_provider.dart';
 
 const List<Tab> tabs = <Tab>[
-  Tab(text: 'Tab A'),
-  Tab(text: 'Tab B'),
-  Tab(text: 'Tab C'),
+  Tab(
+    text: '首頁',
+    height: 30,
+  ),
+  Tab(
+    text: '語系',
+    height: 30,
+  ),
+  Tab(
+    text: 'Tab C',
+    height: 30,
+  ),
 ];
 
 class HomeMain extends StatefulWidget {
@@ -20,7 +28,6 @@ class HomeMain extends StatefulWidget {
 }
 
 class _HomeMainState extends State<HomeMain> {
-  // bool isNightMode = false;
   IconData toNightMode = Icons.shield_moon;
   IconData toLightMode = Icons.sunny;
 
@@ -32,19 +39,17 @@ class _HomeMainState extends State<HomeMain> {
   Widget build(BuildContext context) {
     ThemeProvider provider = Provider.of<ThemeProvider>(context, listen: false);
     bool isNightMode = provider.isNightMode;
-    // print(provider.isNightMode);
 
     return DefaultTabController(
         length: tabs.length,
         child: Scaffold(
           appBar: AppBar(
+            titleSpacing: 0,
             title: TabBar(
-              // indicatorColor: Colors.amber,
               indicator: UnderlineTabIndicator(
                   borderSide: BorderSide(
                     width: 4,
                     color: Theme.of(context).indicatorColor,
-                    // color: Colors.indigo,
                   ),
                   insets: const EdgeInsets.symmetric(
                     horizontal: 35,
@@ -69,7 +74,6 @@ class _HomeMainState extends State<HomeMain> {
                   setState(() {
                     isNightMode = !isNightMode;
                     provider.setNightMode(isNightMode);
-                    // print(provider.isNightMode);
                   });
                 },
                 icon: isNightMode
@@ -84,7 +88,7 @@ class _HomeMainState extends State<HomeMain> {
               ),
             ],
           ),
-          body: TabBarView(children: <Widget>[
+          body: const TabBarView(children: <Widget>[
             Center(child: HomeGrid()),
             Center(child: CheckoutLanguage()),
             Center(child: Text('tab C')),

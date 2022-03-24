@@ -47,8 +47,6 @@ class AppComponentState extends State<AppComponent> {
         bool isNightMode = provider.isNightMode;
         ThemeMode themeMode = isNightMode ? ThemeMode.dark : ThemeMode.light;
 
-        print(locale);
-        print(snapshot.data);
         //如果偏好有資料則根據偏好語言設定語系
         if(snapshot.data != null){
           if(snapshot.data == "en") {
