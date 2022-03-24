@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutterwebview/components/data/home_grid_data.dart';
 
 //首頁gridview的內部子元件
-class HomeGridWidget extends StatelessWidget{
-
+class HomeGridWidget extends StatelessWidget {
   final HomeGridData homeGridData;
-  const HomeGridWidget({Key? key, required this.homeGridData}) : super(key: key);
+  const HomeGridWidget({Key? key, required this.homeGridData})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +16,8 @@ class HomeGridWidget extends StatelessWidget{
         children: [
           Image.asset(
             homeGridData.img,
-            width: MediaQuery.of(context).size.width,       //滿版
-            height: MediaQuery.of(context).size.height,     //滿版
+            width: MediaQuery.of(context).size.width, //滿版
+            height: MediaQuery.of(context).size.height, //滿版
             fit: BoxFit.cover,
           ),
           Container(
@@ -28,8 +28,8 @@ class HomeGridWidget extends StatelessWidget{
                 Text(
                   homeGridData.title,
                   style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
+                    color: Colors.white,
+                    fontSize: 14,
                   ),
                 ),
                 Align(
@@ -39,10 +39,8 @@ class HomeGridWidget extends StatelessWidget{
                       //作者
                       Text(
                         homeGridData.author,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14
-                        ),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 14),
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 20),
@@ -50,9 +48,7 @@ class HomeGridWidget extends StatelessWidget{
                         child: Text(
                           homeGridData.locate,
                           style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 14
-                          ),
+                              color: Colors.white, fontSize: 14),
                         ),
                       ),
                     ],
@@ -67,8 +63,8 @@ class HomeGridWidget extends StatelessWidget{
                         height: 8,
                         width: 8,
                         decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.pink,
+                          shape: BoxShape.circle,
+                          color: Colors.pink,
                         ),
                       ),
                       Container(
@@ -77,9 +73,7 @@ class HomeGridWidget extends StatelessWidget{
                         child: Text(
                           homeGridData.count.toString(),
                           style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 14
-                          ),
+                              color: Colors.white, fontSize: 14),
                         ),
                       ),
                     ],
@@ -92,5 +86,4 @@ class HomeGridWidget extends StatelessWidget{
       ),
     );
   }
-
 }

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutterwebview/pages/checkout_language.dart';
 import 'package:provider/provider.dart';
 
-import 'package:flutterwebview/components/gridview/home_grid.dart';
 import 'package:flutterwebview/config/application.dart';
 import 'package:flutterwebview/config/routes.dart';
 import 'package:flutterwebview/providers/theme_provider.dart';
+import '../pages/home_layout.dart';
 
 const List<Tab> tabs = <Tab>[
   Tab(
@@ -89,7 +89,7 @@ class _HomeMainState extends State<HomeMain> {
             ],
           ),
           body: const TabBarView(children: <Widget>[
-            Center(child: HomeGrid()),
+            Center(child: HomeLayout()),
             Center(child: CheckoutLanguage()),
             Center(child: Text('tab C')),
           ]),

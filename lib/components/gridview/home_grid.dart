@@ -16,15 +16,17 @@ class HomeGridState extends State<HomeGrid> {
   Widget build(BuildContext context) {
     //先取得資料
     List data = GenerateData.getListData();
-    return GridView.builder(
-        itemCount: data.length,
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemBuilder: (context, index) {
-          HomeGridData homeGridData = data[index]; //根據索引取得對應的資料
-          return HomeGridWidget(
-            homeGridData: homeGridData,
-          );
-        });
+    return Expanded(
+      child: GridView.builder(
+          itemCount: data.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2),
+          itemBuilder: (context, index) {
+            HomeGridData homeGridData = data[index]; //根據索引取得對應的資料
+            return HomeGridWidget(
+              homeGridData: homeGridData,
+            );
+          }),
+    );
   }
 }
