@@ -34,6 +34,9 @@ class AppComponentState extends State<AppComponent> {
     Application.router = router;
   }
 
+  //紀錄是否已經完成語系provider初始化
+  bool isLangInit = false;
+
   @override
   Widget build(BuildContext context) {
     LanguageProvider languageProvider = LanguageProvider();
@@ -55,6 +58,12 @@ class AppComponentState extends State<AppComponent> {
             locale = const Locale('zh', 'CN');
           }else if(snapshot.data == "zh_TW") {
             locale = const Locale('zh', 'TW');
+          }
+          if(!isLangInit){
+            //送一個provider訊號改變當前語系
+            LanguageProvider languageProvider = Provider.of<LanguageProvider>(context);
+            languageProvider.setLocale(locale);
+            isLangInit = true;
           }
         }
 
