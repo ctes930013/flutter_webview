@@ -29,6 +29,8 @@ class HomeComponentState extends State<HomeComponent> {
       return;
     }
 
+    //關閉所有提示框
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
     //使用fluro路由換頁
     Application.router.navigateTo(
       context,
@@ -71,7 +73,7 @@ class HomeComponentState extends State<HomeComponent> {
                             KeyboardUtils.hideKeyboard(context),
                             submit(context)
                           }),
-                )
+                ),
               ]),
         ));
   }
