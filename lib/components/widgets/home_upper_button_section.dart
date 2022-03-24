@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
+import '../data/home_upper_button_section_data.dart';
 
 class HomeUpperButtonSection extends StatelessWidget {
-  const HomeUpperButtonSection({Key? key}) : super(key: key);
+  final List<HomeUpperButtonSectionData> buttonList = [
+    HomeUpperButtonSectionData(text: '推薦1', id: 0),
+    HomeUpperButtonSectionData(text: '星秀', id: 1),
+    HomeUpperButtonSectionData(text: '顏值', id: 2),
+    HomeUpperButtonSectionData(text: '新人', id: 3),
+    HomeUpperButtonSectionData(text: '舞蹈', id: 4),
+    HomeUpperButtonSectionData(text: '交友', id: 5),
+    HomeUpperButtonSectionData(text: '音樂', id: 6),
+    HomeUpperButtonSectionData(text: '女神', id: 7)
+  ];
 
-  static const buttonTxts = ['推薦', '星秀', '顏值', '新人', '舞蹈', '交友', '音樂', '女神'];
+  HomeUpperButtonSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: buttonTxts.map((txt) {
+    // return SingleChildScrollView(
+    return Container(
+      height: 100,
+      // scrollDirection: Axis.horizontal,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
           return ElevatedButton(
             style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
@@ -19,9 +32,10 @@ class HomeUpperButtonSection extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18.0),
                 ))),
             onPressed: null,
-            child: Text(txt),
+            child: Text(buttonList[index].text),
           );
-        }).toList(),
+        },
+        itemCount: buttonList.length,
       ),
     );
   }

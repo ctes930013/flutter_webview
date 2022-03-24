@@ -16,9 +16,9 @@ class _HomeLayoutState extends State<HomeLayout> {
     //   child: HomeGrid(),
     // );
     return Column(
-      children: const <Widget>[
+      children: <Widget>[
         HomeUpperButtonSection(),
-        HomeGrid(),
+        const HomeGrid(),
       ],
     );
   }

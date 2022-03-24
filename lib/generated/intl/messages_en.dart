@@ -23,12 +23,21 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "a_cup": MessageLookupByLibrary.simpleMessage("A Cup"),
+        "dancing": MessageLookupByLibrary.simpleMessage("dancint"),
         "do_not_leave_blank": MessageLookupByLibrary.simpleMessage(
             "do not leave any field blank"),
+        "friendship": MessageLookupByLibrary.simpleMessage("friendship"),
         "game_one_min_fast_three":
             MessageLookupByLibrary.simpleMessage("Play Game"),
+        "godness": MessageLookupByLibrary.simpleMessage("godness"),
         "kaoshiung_city": MessageLookupByLibrary.simpleMessage("Kaoshiung"),
         "lao_wo": MessageLookupByLibrary.simpleMessage("Old Fellow"),
+        "music": MessageLookupByLibrary.simpleMessage("music"),
+        "new_show": MessageLookupByLibrary.simpleMessage("new show"),
+        "new_star": MessageLookupByLibrary.simpleMessage("new start"),
+        "pretty": MessageLookupByLibrary.simpleMessage("pretty"),
+        "recommendation":
+            MessageLookupByLibrary.simpleMessage("recommendation"),
         "second_page_btn_text": MessageLookupByLibrary.simpleMessage("Send"),
         "second_page_edit_hint": MessageLookupByLibrary.simpleMessage(
             "Please enter the value to be passed to the WebView"),
