@@ -11,13 +11,13 @@ class LanguageProvider extends ChangeNotifier{
   Future<String> getLocalePref() async {
     //從偏好中讀取
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String local = prefs.getString(Constants.languageKey) ?? "";
+    String local = prefs.getString(Constants.languageKey) ?? Constants.languageSimplify;   //預設簡體中文
     return local;
   }
 
   Locale get getLocale  => locale;
 
-  LanguageProvider();
+  LanguageProvider(this.locale);
 
   setLocale(locale) async{
     this.locale = locale;

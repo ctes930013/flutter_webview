@@ -25,9 +25,6 @@ void main() {
         ChangeNotifierProvider<ThemeProvider>(
           create: (context) => ThemeProvider(false),
         ),
-        ChangeNotifierProvider<LanguageProvider>(
-          create: (context) => LanguageProvider(),
-        ),
       ],
       child: AppComponent(),
     ),
