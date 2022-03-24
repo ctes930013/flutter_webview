@@ -12,5 +12,15 @@
   "game_one_min_fast_three": "一分快三",
   "do_not_leave_blank": "請勿為空",
   "value_from_web": "Web端回傳的值",
-  "use_provider_control_load": "使用狀態控制模組Provider實現進度圈"
+  "use_provider_control_load": "使用狀態控制模組Provider實現進度圈",
+  "button": {
+    "recommendation": "推薦",
+    "new_show": "新秀",
+    "pretty": "顏值",
+    "new_star": "新人",
+    "dancing": "舞蹈",
+    "friendship": "交友",
+    "music": "音樂",
+    "godness": "女神"
+  }
 }
