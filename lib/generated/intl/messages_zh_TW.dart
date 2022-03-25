@@ -23,10 +23,18 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "a_cup": MessageLookupByLibrary.simpleMessage("A罩杯"),
+        "dancing": MessageLookupByLibrary.simpleMessage("舞蹈"),
         "do_not_leave_blank": MessageLookupByLibrary.simpleMessage("請勿為空"),
+        "friendship": MessageLookupByLibrary.simpleMessage("交友"),
         "game_one_min_fast_three": MessageLookupByLibrary.simpleMessage("一分快三"),
+        "godness": MessageLookupByLibrary.simpleMessage("女神"),
         "kaoshiung_city": MessageLookupByLibrary.simpleMessage("高雄"),
         "lao_wo": MessageLookupByLibrary.simpleMessage("老窩"),
+        "music": MessageLookupByLibrary.simpleMessage("音樂"),
+        "new_show": MessageLookupByLibrary.simpleMessage("新秀"),
+        "new_star": MessageLookupByLibrary.simpleMessage("新人"),
+        "pretty": MessageLookupByLibrary.simpleMessage("顏值"),
+        "recommendation": MessageLookupByLibrary.simpleMessage("推薦"),
         "second_page_btn_text": MessageLookupByLibrary.simpleMessage("送出"),
         "second_page_edit_hint":
             MessageLookupByLibrary.simpleMessage("請輸入要傳入WebView的值"),

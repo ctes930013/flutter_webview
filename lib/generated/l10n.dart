@@ -189,6 +189,86 @@ class S {
       args: [],
     );
   }
+
+  /// `recommendation`
+  String get recommendation {
+    return Intl.message(
+      'recommendation',
+      name: 'recommendation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `new show`
+  String get new_show {
+    return Intl.message(
+      'new show',
+      name: 'new_show',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `pretty`
+  String get pretty {
+    return Intl.message(
+      'pretty',
+      name: 'pretty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `new start`
+  String get new_star {
+    return Intl.message(
+      'new start',
+      name: 'new_star',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `dancint`
+  String get dancing {
+    return Intl.message(
+      'dancint',
+      name: 'dancing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `friendship`
+  String get friendship {
+    return Intl.message(
+      'friendship',
+      name: 'friendship',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `music`
+  String get music {
+    return Intl.message(
+      'music',
+      name: 'music',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `godness`
+  String get godness {
+    return Intl.message(
+      'godness',
+      name: 'godness',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

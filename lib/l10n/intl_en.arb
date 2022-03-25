@@ -8,9 +8,17 @@
   "xinzhu_city": "Xinzhu",
   "tiny_cup": "Tiny Cup",
   "a_cup": "A Cup",
-  "lao_wo":"Old Fellow",
+  "lao_wo": "Old Fellow",
   "game_one_min_fast_three": "Play Game",
   "do_not_leave_blank": "do not leave any field blank",
   "value_from_web": "the value passed from web side",
-  "use_provider_control_load": "The loading process is controlled by Provider"
+  "use_provider_control_load": "The loading process is controlled by Provider",
+  "recommendation": "recommendation",
+  "new_show": "new show",
+  "pretty": "pretty",
+  "new_star": "new start",
+  "dancing": "dancint",
+  "friendship": "friendship",
+  "music": "music",
+  "godness": "godness"
 }

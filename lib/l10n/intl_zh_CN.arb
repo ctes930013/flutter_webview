@@ -8,9 +8,17 @@
   "xinzhu_city": "新竹",
   "tiny_cup": "超小",
   "a_cup": "A罩杯",
-  "lao_wo":"老窝",
+  "lao_wo": "老窝",
   "game_one_min_fast_three": "一分快三",
   "do_not_leave_blank": "请勿为空",
   "value_from_web": "Web端回传的值",
-  "use_provider_control_load": "使用状态控制模组Provider实现进度"
+  "use_provider_control_load": "使用状态控制模组Provider实现进度",
+  "recommendation": "推荐",
+  "new_show": "新秀",
+  "pretty": "颜值",
+  "new_star": "新人",
+  "dancing": "舞蹈",
+  "friendship": "交友",
+  "music": "音乐",
+  "godness": "女神"
 }

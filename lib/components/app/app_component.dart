@@ -18,7 +18,7 @@ import 'package:provider/provider.dart';
 
 import '../../config/application.dart';
 import '../../config/routes.dart';
-import '../../ui/theme.dart';
+import '../../models/ui/theme.dart';
 
 class AppComponent extends StatefulWidget {
   @override
