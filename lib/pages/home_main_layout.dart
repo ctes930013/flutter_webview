@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutterwebview/components/data/generate_data.dart';
-import 'package:flutterwebview/models/ui/models/home_grid_data.dart';
+import 'package:flutterwebview/models/models/home_grid_data.dart';
 import '../components/gridview/home_main_grid.dart';
 import '../components/widgets/home_upper_button_section.dart';
+import '../components/widgets/home_recommend_upper_section.dart';
 
 //首頁的gridview
 class HomeMainLayout extends StatefulWidget {
@@ -50,7 +51,8 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
           List<HomeGridData> data = snapshot.data ?? []; //get data
           return Column(
             children: <Widget>[
-              HomeUpperButtonSection(),
+              const HomeUpperButtonSection(),
+              const HomeRecommendUpperSection(),
               HomeMainGrid(data),
             ],
           );

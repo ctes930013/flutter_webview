@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterwebview/models/ui/models/home_grid_data.dart';
+import 'package:flutterwebview/models/models/home_grid_data.dart';
 
 //首頁gridview的內部子元件
 class HomeGridWidget extends StatelessWidget {

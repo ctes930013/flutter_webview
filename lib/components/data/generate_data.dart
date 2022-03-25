@@ -1,7 +1,7 @@
 //產生自定義假資料
 import 'dart:math';
 
-import 'package:flutterwebview/models/ui/models/home_grid_data.dart';
+import 'package:flutterwebview/models/models/home_grid_data.dart';
 import 'package:flutterwebview/generated/l10n.dart';
 
 class GenerateData {
