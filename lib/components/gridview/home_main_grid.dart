@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../components/data/home_grid_data.dart';
+import '../../models/ui/models/home_grid_data.dart';
 import '../../components/widgets/home_grid_widget.dart';
 
 class HomeMainGrid extends StatefulWidget {
