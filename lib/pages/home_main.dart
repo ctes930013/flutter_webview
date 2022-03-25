@@ -5,8 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:flutterwebview/config/application.dart';
 import 'package:flutterwebview/config/routes.dart';
 import 'package:flutterwebview/providers/theme_provider.dart';
-import '../pages/home_layout.dart';
-import 'home_main_layout.dart';
+import '../pages/home_main_layout.dart';
 
 const List<Tab> tabs = <Tab>[
   Tab(
