@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutterwebview/components/data/generate_data.dart';
-import 'package:flutterwebview/components/data/home_grid_data.dart';
+import 'package:flutterwebview/models/ui/models/home_grid_data.dart';
 import '../components/gridview/home_main_grid.dart';
 import '../components/widgets/home_upper_button_section.dart';
 
