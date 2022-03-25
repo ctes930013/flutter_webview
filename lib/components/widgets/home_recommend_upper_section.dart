@@ -10,19 +10,21 @@ class HomeRecommendUpperSection extends StatelessWidget {
     var buttonList = data.getReccommendButtonList();
 
     return SizedBox(
-      height: 40,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
+      height: 80,
+      child: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 5, mainAxisExtent: 40),
         itemBuilder: (context, index) {
           return ElevatedButton(
             style: ButtonStyle(
               padding: MaterialStateProperty.all<EdgeInsets>(
-                  const EdgeInsets.all(8)),
+                  const EdgeInsets.all(1)),
               backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
             ),
             onPressed: null,
             child: Image.asset(
               buttonList[index].img,
+              fit: BoxFit.fill,
             ),
           );
         },
