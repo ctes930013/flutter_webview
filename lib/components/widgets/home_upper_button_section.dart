@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../data/home_upper_button_section_data.dart';
+import '../../models/ui/models/home_upper_button_section_data.dart';
 
 class HomeUpperButtonSection extends StatelessWidget {
   final List<HomeUpperButtonSectionData> buttonList = [
@@ -17,10 +17,8 @@ class HomeUpperButtonSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return SingleChildScrollView(
-    return Container(
-      height: 100,
-      // scrollDirection: Axis.horizontal,
+    return SizedBox(
+      height: 40,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
