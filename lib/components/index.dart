@@ -19,7 +19,7 @@ class Index extends StatefulWidget {
 
 class IndexState extends State<Index> {
   //紀錄傳入的頁數
-  late int index;
+  int index = 0;
   List<Widget> pages = [
     HomeMain(),
     HomeComponent(),
@@ -29,7 +29,7 @@ class IndexState extends State<Index> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    index = int.parse(widget.index);
+    //index = int.parse(widget.index);
     return Scaffold(
       //下方tab
       bottomNavigationBar: BottomNavigationBar(
@@ -38,24 +38,26 @@ class IndexState extends State<Index> {
         type: BottomNavigationBarType.fixed,
         currentIndex: index,
         onTap: (index) {
-          // this.index = index;
-          // setState(() {
-          //
-          // });
+          setState(() {
+            this.index = index;
+          });
           //倘若當前頁面與點選的頁面相同不做處理
-          if(index != this.index){
-            //使用fluro路由切換頁面
-            Application.router.navigateTo(
-              context,
-              Routes.index + "?index=" + index.toString(), //將點選的頁數傳入路由,
-              transition: getTransitionType(index),
-              replace: true, //替換下一頁為當前頁面
-            );
-          }
+          // if(index != this.index){
+          //   //使用fluro路由切換頁面
+          //   Application.router.navigateTo(
+          //     context,
+          //     Routes.index + "?index=" + index.toString(), //將點選的頁數傳入路由,
+          //     transition: getTransitionType(index),
+          //     replace: true, //替換下一頁為當前頁面
+          //   );
+          // }
         },
         items: getCurrentBottomBar(),
       ),
-      body: pages[index],
+      body: IndexedStack(    //保持頁面原始操作狀態
+        index: index,
+        children: pages,
+      ),
     );
   }
 

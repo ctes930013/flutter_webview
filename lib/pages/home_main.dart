@@ -6,6 +6,7 @@ import 'package:flutterwebview/config/application.dart';
 import 'package:flutterwebview/config/routes.dart';
 import 'package:flutterwebview/providers/theme_provider.dart';
 import '../pages/home_layout.dart';
+import 'home_main_layout.dart';
 
 const List<Tab> tabs = <Tab>[
   Tab(
@@ -89,7 +90,10 @@ class _HomeMainState extends State<HomeMain> {
             ],
           ),
           body: const TabBarView(children: <Widget>[
-            Center(child: HomeLayout()),
+            // Center(child: HomeLayout()),
+            Center(
+              child: HomeMainLayout(),
+            ),
             Center(child: CheckoutLanguage()),
             Center(child: Text('tab C')),
           ]),

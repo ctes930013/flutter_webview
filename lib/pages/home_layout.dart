@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../components/gridview/home_grid.dart';
+import 'home_main_layout.dart';
 import '../components/widgets/home_upper_button_section.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -18,7 +18,7 @@ class _HomeLayoutState extends State<HomeLayout> {
     return Column(
       children: <Widget>[
         HomeUpperButtonSection(),
-        const HomeGrid(),
+        HomeMainLayout(),
       ],
     );
   }
