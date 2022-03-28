@@ -9,17 +9,17 @@ import 'package:flutterwebview/providers/theme_provider.dart';
 import '../pages/home_main_layout.dart';
 import 'package:flutterwebview/generated/l10n.dart';
 
-List<Tab> tabs = <Tab>[
+const List<Tab> tabs = <Tab>[
   Tab(
-    text: S.current.index,
+    text: '首頁',
     height: 30,
   ),
   Tab(
-    text: S.current.language,
+    text: '語系',
     height: 30,
   ),
   Tab(
-    text: S.current.tab_c,
+    text: 'Tab C',
     height: 30,
   ),
 ];
@@ -34,7 +34,8 @@ class _HomeMainState extends State<HomeMain> {
   IconData toLightMode = Icons.sunny;
 
   void routerHandler(context, routesName) {
-    Application.router.navigateTo(context, routesName, transition: TransitionType.inFromRight);
+    Application.router.navigateTo(context, routesName,
+        transition: TransitionType.inFromRight);
   }
 
   @override
@@ -91,7 +92,6 @@ class _HomeMainState extends State<HomeMain> {
             ],
           ),
           body: TabBarView(children: <Widget>[
-            // Center(child: HomeLayout()),
             const Center(
               child: HomeMainLayout(),
             ),

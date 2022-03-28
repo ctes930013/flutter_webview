@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutterwebview/pages/splash.dart';
-
-import '../../models/ui/models/home_grid_data.dart';
-import '../../components/widgets/home_grid_widget.dart';
 import 'components/index.dart';
 
 class InitializationApp extends StatefulWidget {

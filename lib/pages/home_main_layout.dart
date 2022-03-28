@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutterwebview/components/data/generate_data.dart';
-import 'package:flutterwebview/models/ui/models/home_grid_data.dart';
+import 'package:flutterwebview/models/models/home_grid_data.dart';
 import '../components/gridview/home_main_grid.dart';
 import '../components/widgets/home_upper_button_section.dart';
+import '../components/widgets/home_recommend_upper_section.dart';
 
 //首頁的gridview
 class HomeMainLayout extends StatefulWidget {
@@ -34,28 +35,47 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
     GenerateData generateData = GenerateData();
 
     //下拉刷新
-    return RefreshIndicator(
-      //下拉刷新的處理事件
-      onRefresh: () async {
-        await Future.delayed(const Duration(seconds: 2)); //delay
-        gridStreamController.sink.add(generateData.getListData(total));
-        return Future.value();
-      },
-      //利用下拉刷新加上stream builder
-      child: StreamBuilder(
-        initialData: generateData.getListData(total), //初始值
-        stream: gridStreamController.stream,
-        builder:
-            (BuildContext context, AsyncSnapshot<List<HomeGridData>> snapshot) {
-          List<HomeGridData> data = snapshot.data ?? []; //get data
-          return Column(
-            children: <Widget>[
-              HomeUpperButtonSection(),
-              HomeMainGrid(data),
-            ],
-          );
-        },
-      ),
+    return Column(
+      children: [
+        const HomeUpperButtonSection(),
+        // const HomeRecommendUpperSection(),
+        Expanded(
+          child: RefreshIndicator(
+            //下拉刷新的處理事件
+            onRefresh: () async {
+              await Future.delayed(const Duration(seconds: 2)); //delay
+              gridStreamController.sink.add(generateData.getListData(total));
+              return Future.value();
+            },
+            //利用下拉刷新加上stream builder
+            child: StreamBuilder(
+              initialData: generateData.getListData(total), //初始值
+              stream: gridStreamController.stream,
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<HomeGridData>> snapshot) {
+                List<HomeGridData> data = snapshot.data ?? []; //get data
+                return SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      // Container(
+                      //   color: Colors.amber,
+                      //   height: 100,
+                      //   child: Text('12seeeee3'),
+                      // ),
+                      // Container(
+                      //   color: Colors.purple,
+                      //   height: 200,
+                      //   child: Text('12efewfefwe3'),
+                      // ),
+                      HomeMainGrid(data),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 
