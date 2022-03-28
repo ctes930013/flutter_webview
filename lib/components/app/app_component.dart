@@ -9,6 +9,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterwebview/components/utils/keyboard_utils.dart';
 import 'package:flutterwebview/config/constants.dart';
 import 'package:flutterwebview/generated/l10n.dart';
@@ -46,37 +47,49 @@ class AppComponentState extends State<AppComponent> {
     ThemeMode themeMode = isNightMode ? ThemeMode.dark : ThemeMode.light;
 
     //初始化app
-    final app = MaterialApp(
-      title: 'Fluro',
-      //多國語言配置
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      //當前支援的語系
-      supportedLocales: S.delegate.supportedLocales,
-      localeListResolutionCallback: (locales, supportedLocales) {
-        print(locales);
-        return;
-      },
-      //當前語系
-      locale: newLocale,
-      debugShowCheckedModeBanner: false,
-      theme: Themes.light,
-      themeMode: themeMode,
-      darkTheme: Themes.dark,
-      onGenerateRoute: Application.router.generator,
-      builder: (context, child) => Scaffold(
-        //偵測只要點擊空白處就自動隱藏鍵盤
-        body: GestureDetector(
-          onTap: () {
-            KeyboardUtils.hideKeyboard(context);
+    //引用自適應套件
+    final app = ScreenUtilInit(
+      //理想的標準尺寸
+      designSize: const Size(750, 1334),
+      minTextAdapt: true,
+      builder: (){
+        return MaterialApp(
+          title: 'Fluro',
+          //多國語言配置
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          //當前支援的語系
+          supportedLocales: S.delegate.supportedLocales,
+          localeListResolutionCallback: (locales, supportedLocales) {
+            print(locales);
+            return;
           },
-          child: child,
-        ),
-      ),
+          //當前語系
+          locale: newLocale,
+          debugShowCheckedModeBanner: false,
+          theme: Themes.light,
+          themeMode: themeMode,
+          darkTheme: Themes.dark,
+          onGenerateRoute: Application.router.generator,
+          builder: (context, child) {
+            //初始化自適應套件
+            ScreenUtil.setContext(context);
+            return Scaffold(
+              //偵測只要點擊空白處就自動隱藏鍵盤
+              body: GestureDetector(
+                onTap: () {
+                  KeyboardUtils.hideKeyboard(context);
+                },
+                child: child,
+              ),
+            );
+          }
+        );
+      },
     );
     return app;
   }
