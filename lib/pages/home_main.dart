@@ -33,7 +33,8 @@ class _HomeMainState extends State<HomeMain> {
   IconData toLightMode = Icons.sunny;
 
   void routerHandler(context, routesName) {
-    Application.router.navigateTo(context, routesName, transition: TransitionType.inFromRight);
+    Application.router.navigateTo(context, routesName,
+        transition: TransitionType.inFromRight);
   }
 
   @override
@@ -90,7 +91,6 @@ class _HomeMainState extends State<HomeMain> {
             ],
           ),
           body: const TabBarView(children: <Widget>[
-            // Center(child: HomeLayout()),
             Center(
               child: HomeMainLayout(),
             ),

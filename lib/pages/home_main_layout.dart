@@ -38,7 +38,7 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
     return Column(
       children: [
         const HomeUpperButtonSection(),
-        const HomeRecommendUpperSection(),
+        // const HomeRecommendUpperSection(),
         Expanded(
           child: RefreshIndicator(
             //下拉刷新的處理事件
@@ -54,28 +54,19 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
               builder: (BuildContext context,
                   AsyncSnapshot<List<HomeGridData>> snapshot) {
                 List<HomeGridData> data = snapshot.data ?? []; //get data
-                // return Column(
-                //   children: <Widget>[
-                //     // const HomeUpperButtonSection(),
-                //     // const HomeRecommendUpperSection(),
-                //     HomeMainGrid(data),
-                //   ],
-                // );
                 return SingleChildScrollView(
-                  // scrollDirection: Axis.vertical,
                   child: Column(
-                    // crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-                      Container(
-                        color: Colors.amber,
-                        height: 100,
-                        child: Text('12seeeee3'),
-                      ),
-                      Container(
-                        color: Colors.purple,
-                        height: 200,
-                        child: Text('12efewfefwe3'),
-                      ),
+                      // Container(
+                      //   color: Colors.amber,
+                      //   height: 100,
+                      //   child: Text('12seeeee3'),
+                      // ),
+                      // Container(
+                      //   color: Colors.purple,
+                      //   height: 200,
+                      //   child: Text('12efewfefwe3'),
+                      // ),
                       HomeMainGrid(data),
                     ],
                   ),
