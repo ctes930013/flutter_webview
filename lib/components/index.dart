@@ -26,39 +26,46 @@ class IndexState extends State<Index> {
     HomeComponent(),
     HomeComponent()
   ];
+  HomeBottomBarItemImage homeBottomBarItemImage = HomeBottomBarItemImage();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     //index = int.parse(widget.index);
-    return Scaffold(
-      //下方tab
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.red,
-        unselectedItemColor: Colors.grey,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: index,
-        onTap: (index) {
-          setState(() {
-            this.index = index;
-          });
-          //倘若當前頁面與點選的頁面相同不做處理
-          // if(index != this.index){
-          //   //使用fluro路由切換頁面
-          //   Application.router.navigateTo(
-          //     context,
-          //     Routes.index + "?index=" + index.toString(), //將點選的頁數傳入路由,
-          //     transition: getTransitionType(index),
-          //     replace: true, //替換下一頁為當前頁面
-          //   );
-          // }
+    return
+      FutureBuilder<List<BottomNavigationBarItem>>(   //get remote bottom bar icon
+        future: getCurrentBottomBar(),
+        builder: (context, snap){
+          return Scaffold(
+            //下方tab
+            bottomNavigationBar: BottomNavigationBar(
+              selectedItemColor: Colors.red,
+              unselectedItemColor: Colors.grey,
+              type: BottomNavigationBarType.fixed,
+              currentIndex: index,
+              onTap: (index) {
+                setState(() {
+                  this.index = index;
+                });
+                //倘若當前頁面與點選的頁面相同不做處理
+                // if(index != this.index){
+                //   //使用fluro路由切換頁面
+                //   Application.router.navigateTo(
+                //     context,
+                //     Routes.index + "?index=" + index.toString(), //將點選的頁數傳入路由,
+                //     transition: getTransitionType(index),
+                //     replace: true, //替換下一頁為當前頁面
+                //   );
+                // }
+              },
+              items: snap.data ?? getDefaultBottomBar(),
+            ),
+            body: IndexedStack(    //保持頁面原始操作狀態
+              index: index,
+              children: pages,
+            ),
+          );
         },
-        items: getCurrentBottomBar(),
-      ),
-      body: IndexedStack(    //保持頁面原始操作狀態
-        index: index,
-        children: pages,
-      ),
-    );
+      );
   }
 
   //挑選過場動畫效果
@@ -75,12 +82,11 @@ class IndexState extends State<Index> {
   }
 
   //設定底部選單的圖像文字
-  List<BottomNavigationBarItem> getCurrentBottomBar(){
-    HomeBottomBarItemImage homeBottomBarItemImage = HomeBottomBarItemImage();
+  Future<List<BottomNavigationBarItem>> getCurrentBottomBar() async{
     if(index == 0){
       //焦點在首頁
       return [
-        homeBottomBarItemImage.setFirstPageItemGif(),
+        await homeBottomBarItemImage.setFirstPageItemGif(),
         homeBottomBarItemImage.setSecondPageItem(),
         homeBottomBarItemImage.setThirdPageItem(),
         homeBottomBarItemImage.setFourthPageItem(),
@@ -89,7 +95,7 @@ class IndexState extends State<Index> {
       //焦點在第二頁
       return [
         homeBottomBarItemImage.setFirstPageItem(),
-        homeBottomBarItemImage.setSecondPageItemGif(),
+        await homeBottomBarItemImage.setSecondPageItemGif(),
         homeBottomBarItemImage.setThirdPageItem(),
         homeBottomBarItemImage.setFourthPageItem(),
       ];
@@ -98,7 +104,7 @@ class IndexState extends State<Index> {
       return [
         homeBottomBarItemImage.setFirstPageItem(),
         homeBottomBarItemImage.setSecondPageItem(),
-        homeBottomBarItemImage.setThirdPageItemGif(),
+        await homeBottomBarItemImage.setThirdPageItemGif(),
         homeBottomBarItemImage.setFourthPageItem(),
       ];
     }else{
@@ -107,8 +113,18 @@ class IndexState extends State<Index> {
         homeBottomBarItemImage.setFirstPageItem(),
         homeBottomBarItemImage.setSecondPageItem(),
         homeBottomBarItemImage.setThirdPageItem(),
-        homeBottomBarItemImage.setFourthPageItemGif(),
+        await homeBottomBarItemImage.setFourthPageItemGif(),
       ];
     }
+  }
+
+  //設定當還在抓取網路圖片時的預設bar
+  List<BottomNavigationBarItem> getDefaultBottomBar(){
+    return [
+      homeBottomBarItemImage.getDefaultImg(),
+      homeBottomBarItemImage.getDefaultImg(),
+      homeBottomBarItemImage.getDefaultImg(),
+      homeBottomBarItemImage.getDefaultImg(),
+    ];
   }
 }

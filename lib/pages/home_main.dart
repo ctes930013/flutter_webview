@@ -1,3 +1,4 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterwebview/pages/checkout_language.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +33,7 @@ class _HomeMainState extends State<HomeMain> {
   IconData toLightMode = Icons.sunny;
 
   void routerHandler(context, routesName) {
-    Application.router.navigateTo(context, routesName);
+    Application.router.navigateTo(context, routesName, transition: TransitionType.inFromRight);
   }
 
   @override

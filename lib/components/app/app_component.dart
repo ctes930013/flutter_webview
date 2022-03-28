@@ -9,7 +9,9 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterwebview/components/utils/keyboard_utils.dart';
+import 'package:flutterwebview/config/constants.dart';
 import 'package:flutterwebview/generated/l10n.dart';
 import 'package:flutterwebview/providers/language_provider.dart';
 import 'package:flutterwebview/providers/theme_provider.dart';
@@ -34,41 +36,24 @@ class AppComponentState extends State<AppComponent> {
     Application.router = router;
   }
 
-  //紀錄是否已經完成語系provider初始化
-  bool isLangInit = false;
-
   @override
   Widget build(BuildContext context) {
-    LanguageProvider languageProvider = LanguageProvider();
     //監聽使用者設定語系
-    Locale locale = context.select((LanguageProvider provider) => provider.getLocale);
-    //等待讀取使用者設定的語系的偏好
-    return FutureBuilder(
-      future: languageProvider.getLocalePref(),
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        ThemeProvider provider = Provider.of<ThemeProvider>(context);
-        bool isNightMode = provider.isNightMode;
-        ThemeMode themeMode = isNightMode ? ThemeMode.dark : ThemeMode.light;
+    Locale newLocale = context.select((LanguageProvider provider) => provider.getLocale);
 
-        //如果偏好有資料則根據偏好語言設定語系
-        if(snapshot.data != null){
-          if(snapshot.data == "en") {
-            locale = const Locale('en');
-          }else if(snapshot.data == "zh_CN") {
-            locale = const Locale('zh', 'CN');
-          }else if(snapshot.data == "zh_TW") {
-            locale = const Locale('zh', 'TW');
-          }
-          if(!isLangInit){
-            //送一個provider訊號改變當前語系
-            LanguageProvider languageProvider = Provider.of<LanguageProvider>(context);
-            languageProvider.setLocale(locale);
-            isLangInit = true;
-          }
-        }
+    //初始化樣式
+    ThemeProvider provider = Provider.of<ThemeProvider>(context);
+    bool isNightMode = provider.isNightMode;
+    ThemeMode themeMode = isNightMode ? ThemeMode.dark : ThemeMode.light;
 
-        //初始化app
-        final app = MaterialApp(
+    //初始化app
+    //引用自適應套件
+    final app = ScreenUtilInit(
+      //理想的標準尺寸
+      designSize: const Size(750, 1334),
+      minTextAdapt: true,
+      builder: (){
+        return MaterialApp(
           title: 'Fluro',
           //多國語言配置
           localizationsDelegates: const [
@@ -84,24 +69,28 @@ class AppComponentState extends State<AppComponent> {
             return;
           },
           //當前語系
-          locale: locale,
+          locale: newLocale,
           debugShowCheckedModeBanner: false,
           theme: Themes.light,
           themeMode: themeMode,
           darkTheme: Themes.dark,
           onGenerateRoute: Application.router.generator,
-          builder: (context, child) => Scaffold(
-            //偵測只要點擊空白處就自動隱藏鍵盤
-            body: GestureDetector(
-              onTap: () {
-                KeyboardUtils.hideKeyboard(context);
-              },
-              child: child,
-            ),
-          ),
+          builder: (context, child) {
+            //初始化自適應套件
+            ScreenUtil.setContext(context);
+            return Scaffold(
+              //偵測只要點擊空白處就自動隱藏鍵盤
+              body: GestureDetector(
+                onTap: () {
+                  KeyboardUtils.hideKeyboard(context);
+                },
+                child: child,
+              ),
+            );
+          }
         );
-        return app;
       },
     );
+    return app;
   }
 }
