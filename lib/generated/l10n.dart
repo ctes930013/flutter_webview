@@ -269,6 +269,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Tab C`
+  String get tab_c {
+    return Intl.message(
+      'Tab C',
+      name: 'tab_c',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message(
+      'Search',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rank`
+  String get rank {
+    return Intl.message(
+      'Rank',
+      name: 'rank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Index`
+  String get index {
+    return Intl.message(
+      'Index',
+      name: 'index',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message(
+      'Language',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

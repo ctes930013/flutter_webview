@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import '../../models/ui/models/home_upper_button_section_data.dart';
+import 'package:flutterwebview/generated/l10n.dart';
 
 class HomeUpperButtonSection extends StatelessWidget {
   final List<HomeUpperButtonSectionData> buttonList = [
-    HomeUpperButtonSectionData(text: '推薦1', id: 0),
-    HomeUpperButtonSectionData(text: '星秀', id: 1),
-    HomeUpperButtonSectionData(text: '顏值', id: 2),
-    HomeUpperButtonSectionData(text: '新人', id: 3),
-    HomeUpperButtonSectionData(text: '舞蹈', id: 4),
-    HomeUpperButtonSectionData(text: '交友', id: 5),
-    HomeUpperButtonSectionData(text: '音樂', id: 6),
-    HomeUpperButtonSectionData(text: '女神', id: 7)
+    HomeUpperButtonSectionData(text: S.current.recommendation, id: 0),
+    HomeUpperButtonSectionData(text: S.current.new_show, id: 1),
+    HomeUpperButtonSectionData(text: S.current.pretty, id: 2),
+    HomeUpperButtonSectionData(text: S.current.new_star, id: 3),
+    HomeUpperButtonSectionData(text: S.current.dancing, id: 4),
+    HomeUpperButtonSectionData(text: S.current.friendship, id: 5),
+    HomeUpperButtonSectionData(text: S.current.music, id: 6),
+    HomeUpperButtonSectionData(text: S.current.godness, id: 7)
   ];
 
   HomeUpperButtonSection({Key? key}) : super(key: key);

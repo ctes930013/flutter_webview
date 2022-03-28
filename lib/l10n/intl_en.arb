@@ -20,5 +20,10 @@
   "dancing": "dancint",
   "friendship": "friendship",
   "music": "music",
-  "godness": "godness"
+  "godness": "godness",
+  "tab_c": "Tab C",
+  "search": "Search",
+  "rank": "Rank",
+  "index": "Index",
+  "language": "Language"
 }

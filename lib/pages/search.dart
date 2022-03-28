@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterwebview/generated/l10n.dart';
 
 class Search extends StatelessWidget {
   const Search({Key? key}) : super(key: key);
@@ -7,9 +8,9 @@ class Search extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Search'),
+        title: Text(S.of(context).search),
       ),
-      body: const Center(child: Text('Search')),
+      body: Center(child: Text(S.of(context).search)),
     );
   }
 }

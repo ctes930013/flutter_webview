@@ -7,18 +7,19 @@ import 'package:flutterwebview/config/application.dart';
 import 'package:flutterwebview/config/routes.dart';
 import 'package:flutterwebview/providers/theme_provider.dart';
 import '../pages/home_main_layout.dart';
+import 'package:flutterwebview/generated/l10n.dart';
 
-const List<Tab> tabs = <Tab>[
+List<Tab> tabs = <Tab>[
   Tab(
-    text: '首頁',
+    text: S.current.index,
     height: 30,
   ),
   Tab(
-    text: '語系',
+    text: S.current.language,
     height: 30,
   ),
   Tab(
-    text: 'Tab C',
+    text: S.current.tab_c,
     height: 30,
   ),
 ];
@@ -89,13 +90,13 @@ class _HomeMainState extends State<HomeMain> {
               ),
             ],
           ),
-          body: const TabBarView(children: <Widget>[
+          body: TabBarView(children: <Widget>[
             // Center(child: HomeLayout()),
-            Center(
+            const Center(
               child: HomeMainLayout(),
             ),
-            Center(child: CheckoutLanguage()),
-            Center(child: Text('tab C')),
+            const Center(child: CheckoutLanguage()),
+            Center(child: Text(S.current.tab_c)),
           ]),
         ));
   }
