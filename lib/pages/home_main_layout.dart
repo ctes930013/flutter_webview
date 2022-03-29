@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,6 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
   Widget build(BuildContext context) {
     HomeRecommendUpperSectionProvider provider =
         Provider.of<HomeRecommendUpperSectionProvider>(context, listen: true);
-    bool scrollForward = provider.scrollForward;
 
     GenerateData generateData = GenerateData();
 
@@ -64,7 +64,7 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
               builder: (BuildContext context,
                   AsyncSnapshot<List<HomeGridData>> snapshot) {
                 List<HomeGridData> data = snapshot.data ?? []; //get data
-                return NotificationListener<UserScrollNotification>(
+                return Listener(
                   child: SingleChildScrollView(
                     controller: ScrollController(),
                     child: Column(
@@ -83,14 +83,22 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
                       ],
                     ),
                   ),
-                  onNotification: (notificationInfo) {
-                    if (notificationInfo.direction == ScrollDirection.forward) {
-                      provider.setScrollForward(true);
-                    } else if (notificationInfo.direction ==
-                        ScrollDirection.reverse) {
-                      provider.setScrollForward(false);
+                  onPointerDown: (event) {
+                    provider.lastDownY = event.position.distance;
+                  },
+                  onPointerMove: (event) {
+                    var position = event.position.distance;
+                    double detal = 0;
+                    if (provider.lastDownY != 0) {
+                      detal = position - provider.lastDownY;
                     }
-                    return true;
+                    if (detal > 30) {
+                      provider.setScrollForward(true);
+                      provider.setLastDownY(position);
+                    } else if (detal < -30) {
+                      provider.setScrollForward(false);
+                      provider.setLastDownY(position);
+                    }
                   },
                 );
               },
