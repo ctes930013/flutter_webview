@@ -22,6 +22,9 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
   //定義資料總筆數
   int total = 10;
 
+  //定義scroll控制器
+  ScrollController scrollController = ScrollController();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -38,7 +41,7 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
     return Column(
       children: [
         const HomeUpperButtonSection(),
-        // const HomeRecommendUpperSection(),
+        const HomeRecommendUpperSection(),
         Expanded(
           child: RefreshIndicator(
             //下拉刷新的處理事件
@@ -54,22 +57,30 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
               builder: (BuildContext context,
                   AsyncSnapshot<List<HomeGridData>> snapshot) {
                 List<HomeGridData> data = snapshot.data ?? []; //get data
-                return SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-                      // Container(
-                      //   color: Colors.amber,
-                      //   height: 100,
-                      //   child: Text('12seeeee3'),
-                      // ),
-                      // Container(
-                      //   color: Colors.purple,
-                      //   height: 200,
-                      //   child: Text('12efewfefwe3'),
-                      // ),
-                      HomeMainGrid(data),
-                    ],
+                return NotificationListener<UserScrollNotification>(
+                  child: SingleChildScrollView(
+                    controller: ScrollController(),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          color: Colors.amber,
+                          height: 100,
+                          child: Text('12seeeee3'),
+                        ),
+                        Container(
+                          color: Colors.purple,
+                          height: 200,
+                          child: Text('12efewfefwe3'),
+                        ),
+                        HomeMainGrid(data),
+                      ],
+                    ),
                   ),
+                  onNotification: (notificationInfo) {
+                    // ignore: avoid_print
+                    print(notificationInfo.direction);
+                    return true;
+                  },
                 );
               },
             ),
