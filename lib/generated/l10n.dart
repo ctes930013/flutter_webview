@@ -319,6 +319,16 @@ class S {
       args: [],
     );
   }
+
+  /// `testing platform testing platform testing platform testing platform`
+  String get marquee_test {
+    return Intl.message(
+      'testing platform testing platform testing platform testing platform',
+      name: 'marquee_test',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

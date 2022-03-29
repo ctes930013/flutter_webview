@@ -9,16 +9,16 @@ import 'package:flutterwebview/providers/theme_provider.dart';
 import '../pages/home_main_layout.dart';
 import 'package:flutterwebview/generated/l10n.dart';
 
-const List<Tab> tabs = <Tab>[
+List<Tab> tabs = <Tab>[
   Tab(
-    text: '首頁',
+    text: S.current.index,
     height: 30,
   ),
   Tab(
-    text: '語系',
+    text: S.current.language,
     height: 30,
   ),
-  Tab(
+  const Tab(
     text: 'Tab C',
     height: 30,
   ),
@@ -96,7 +96,7 @@ class _HomeMainState extends State<HomeMain> {
               child: HomeMainLayout(),
             ),
             const Center(child: CheckoutLanguage()),
-            Center(child: Text(S.current.tab_c)),
+            Center(child: Text(S.of(context).tab_c)),
           ]),
         ));
   }

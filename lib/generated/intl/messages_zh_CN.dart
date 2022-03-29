@@ -32,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "kaoshiung_city": MessageLookupByLibrary.simpleMessage("高雄"),
         "language": MessageLookupByLibrary.simpleMessage("语系"),
         "lao_wo": MessageLookupByLibrary.simpleMessage("老窝"),
+        "marquee_test": MessageLookupByLibrary.simpleMessage(
+            "本平台为测试样本本平台为测试样本本平台为测试样本本平台为测试样本本平台为测试样本"),
         "music": MessageLookupByLibrary.simpleMessage("音乐"),
         "new_show": MessageLookupByLibrary.simpleMessage("新秀"),
         "new_star": MessageLookupByLibrary.simpleMessage("新人"),

@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "kaoshiung_city": MessageLookupByLibrary.simpleMessage("Kaoshiung"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lao_wo": MessageLookupByLibrary.simpleMessage("Old Fellow"),
+        "marquee_test": MessageLookupByLibrary.simpleMessage(
+            "testing platform testing platform testing platform testing platform"),
         "music": MessageLookupByLibrary.simpleMessage("music"),
         "new_show": MessageLookupByLibrary.simpleMessage("new show"),
         "new_star": MessageLookupByLibrary.simpleMessage("new start"),
