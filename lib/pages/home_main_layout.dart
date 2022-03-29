@@ -1,12 +1,14 @@
 import 'dart:async';
-
+import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutterwebview/components/data/generate_data.dart';
-import 'package:flutterwebview/components/widgets/home_marquee_widget.dart';
 import 'package:flutterwebview/models/models/home_grid_data.dart';
 import '../components/gridview/home_main_grid.dart';
 import '../components/widgets/home_upper_button_section.dart';
 import '../components/widgets/home_recommend_upper_section.dart';
+import '../providers/home_recommend_upper_section_provider.dart';
 
 //首頁的gridview
 class HomeMainLayout extends StatefulWidget {
@@ -36,13 +38,17 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
 
   @override
   Widget build(BuildContext context) {
+    HomeRecommendUpperSectionProvider provider =
+        Provider.of<HomeRecommendUpperSectionProvider>(context, listen: true);
+    bool scrollForward = provider.scrollForward;
+
     GenerateData generateData = GenerateData();
 
     //下拉刷新
     return Column(
       children: [
-        const HomeUpperButtonSection(),
-        // const HomeRecommendUpperSection(),
+        if (provider.scrollForward == false) const HomeUpperButtonSection(),
+        if (provider.scrollForward == true) const HomeRecommendUpperSection(),
         Expanded(
           child: RefreshIndicator(
             //下拉刷新的處理事件
@@ -63,23 +69,27 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
                     controller: ScrollController(),
                     child: Column(
                       children: <Widget>[
-                        Container(
-                          color: Colors.amber,
-                          height: 100,
-                          child: Text('12seeeee3'),
-                        ),
-                        Container(
-                          color: Colors.purple,
-                          height: 200,
-                          child: Text('12efewfefwe3'),
-                        ),
+                        // Container(
+                        //   color: Colors.amber,
+                        //   height: 100,
+                        //   child: Text('12seeeee3'),
+                        // ),
+                        // Container(
+                        //   color: Colors.purple,
+                        //   height: 200,
+                        //   child: Text('12efewfefwe3'),
+                        // ),
                         HomeMainGrid(data),
                       ],
                     ),
                   ),
                   onNotification: (notificationInfo) {
-                    // ignore: avoid_print
-                    print(notificationInfo.direction);
+                    if (notificationInfo.direction == ScrollDirection.forward) {
+                      provider.setScrollForward(true);
+                    } else if (notificationInfo.direction ==
+                        ScrollDirection.reverse) {
+                      provider.setScrollForward(false);
+                    }
                     return true;
                   },
                 );

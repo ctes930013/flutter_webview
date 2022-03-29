@@ -11,6 +11,7 @@ import 'package:flutterwebview/providers/language_provider.dart';
 import 'package:flutterwebview/providers/web_provider.dart';
 import 'package:flutterwebview/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutterwebview/providers/home_recommend_upper_section_provider.dart';
 
 import 'components/app/app_component.dart';
 import 'package:flutter/material.dart';
@@ -20,14 +21,15 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   //由偏好設定中取得語系
-  LanguageProvider languageProvider = LanguageProvider(const Locale('zh', 'TW'));
-  languageProvider.getLocalePref().then((value){
+  LanguageProvider languageProvider =
+      LanguageProvider(const Locale('zh', 'TW'));
+  languageProvider.getLocalePref().then((value) {
     Locale locale;
-    if(value == Constants.languageEnglish) {
+    if (value == Constants.languageEnglish) {
       locale = const Locale('en');
-    }else if(value == Constants.languageSimplify) {
+    } else if (value == Constants.languageSimplify) {
       locale = const Locale('zh', 'CN');
-    }else {
+    } else {
       locale = const Locale('zh', 'TW');
     }
     runApp(
@@ -42,6 +44,9 @@ void main() {
           ),
           ChangeNotifierProvider<LanguageProvider>(
             create: (context) => LanguageProvider(locale),
+          ),
+          ChangeNotifierProvider<HomeRecommendUpperSectionProvider>(
+            create: (context) => HomeRecommendUpperSectionProvider(true),
           ),
         ],
         child: AppComponent(),
