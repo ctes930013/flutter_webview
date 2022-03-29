@@ -47,6 +47,7 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
     //下拉刷新
     return Column(
       children: [
+        //首頁上方滾輪切換過場動畫
         AnimatedOpacity(
           opacity: !provider.scrollForward ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 500),
@@ -106,9 +107,11 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
                       detal = position - provider.lastDownY;
                     }
                     if (detal > 25) {
+                      //顯示跑馬燈以及圖片
                       provider.setScrollForward(true);
                       provider.setLastDownY(position);
                     } else if (detal < -25) {
+                      //顯示按鈕
                       provider.setScrollForward(false);
                       provider.setLastDownY(position);
                     }
