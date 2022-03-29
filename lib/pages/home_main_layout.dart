@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutterwebview/components/data/generate_data.dart';
+import 'package:flutterwebview/components/widgets/home_marquee_widget.dart';
 import 'package:flutterwebview/models/models/home_grid_data.dart';
 import '../components/gridview/home_main_grid.dart';
 import '../components/widgets/home_upper_button_section.dart';
@@ -38,6 +39,7 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
     return Column(
       children: [
         const HomeUpperButtonSection(),
+        const HomeMarqueeWidget(txt: "本平台為測試樣本本平台為測試樣本本平台為測試樣本本平台為測試樣本本平台為測試樣本"),
         // const HomeRecommendUpperSection(),
         Expanded(
           child: RefreshIndicator(
