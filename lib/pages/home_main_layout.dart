@@ -47,8 +47,20 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
     //下拉刷新
     return Column(
       children: [
-        if (provider.scrollForward == false) const HomeUpperButtonSection(),
-        if (provider.scrollForward == true) const HomeRecommendUpperSection(),
+        AnimatedOpacity(
+          opacity: !provider.scrollForward ? 1.0 : 0.0,
+          duration: const Duration(milliseconds: 500),
+          child: !provider.scrollForward
+              ? const HomeUpperButtonSection()
+              : const SizedBox(),
+        ),
+        AnimatedOpacity(
+          opacity: provider.scrollForward ? 1.0 : 0.0,
+          duration: const Duration(milliseconds: 500),
+          child: provider.scrollForward
+              ? const HomeRecommendUpperSection()
+              : const SizedBox(),
+        ),
         Expanded(
           child: RefreshIndicator(
             //下拉刷新的處理事件
@@ -86,16 +98,17 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
                   onPointerDown: (event) {
                     provider.lastDownY = event.position.distance;
                   },
+                  //控制首頁上方section根據滾輪上下切換
                   onPointerMove: (event) {
                     var position = event.position.distance;
                     double detal = 0;
                     if (provider.lastDownY != 0) {
                       detal = position - provider.lastDownY;
                     }
-                    if (detal > 30) {
+                    if (detal > 25) {
                       provider.setScrollForward(true);
                       provider.setLastDownY(position);
-                    } else if (detal < -30) {
+                    } else if (detal < -25) {
                       provider.setScrollForward(false);
                       provider.setLastDownY(position);
                     }
