@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterwebview/generated/l10n.dart';
 
 class Ranking extends StatelessWidget {
   const Ranking({Key? key}) : super(key: key);
@@ -7,9 +8,9 @@ class Ranking extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ranking'),
+        title: Text(S.of(context).rank),
       ),
-      body: const Center(child: Text('Ranking')),
+      body: Center(child: Text(S.of(context).rank)),
     );
   }
 }

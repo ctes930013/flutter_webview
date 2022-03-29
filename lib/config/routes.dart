@@ -30,7 +30,7 @@ class Routes {
 
     router.define(root, handler: rootHandler);
     router.define(web, handler: webHandler);
-    router.define(index, handler: rootHandler);
+    router.define(index, handler: indexHandler);
     router.define(ranking, handler: rankingHandler);
     router.define(search, handler: searchHandler);
 

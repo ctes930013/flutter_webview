@@ -50,7 +50,7 @@ class AppComponentState extends State<AppComponent> {
     //引用自適應套件
     final app = ScreenUtilInit(
       //理想的標準尺寸
-      designSize: const Size(750, 1334),
+      designSize: const Size(375, 667),
       minTextAdapt: true,
       builder: (){
         return MaterialApp(
