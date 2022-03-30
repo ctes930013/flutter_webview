@@ -94,6 +94,7 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
                         //   child: Text('12efewfefwe3'),
                         // ),
                         HomeMainGrid(data),
+                        //banner
                         const HomeBannerWidget(),
                       ],
                     ),
