@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutterwebview/components/widgets/home_banner_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -93,6 +94,7 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
                         //   child: Text('12efewfefwe3'),
                         // ),
                         HomeMainGrid(data),
+                        const HomeBannerWidget(),
                       ],
                     ),
                   ),
