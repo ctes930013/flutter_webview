@@ -26,5 +26,6 @@
   "rank": "Rank",
   "index": "Index",
   "language": "Language",
+  "auto_redirect": "Automatically lead to the home page after a few seconds",
   "marquee_test": "testing platform testing platform testing platform testing platform"
 }

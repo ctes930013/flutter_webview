@@ -320,6 +320,16 @@ class S {
     );
   }
 
+  /// `Automatically lead to the home page after a few seconds`
+  String get auto_redirect {
+    return Intl.message(
+      'Automatically lead to the home page after a few seconds',
+      name: 'auto_redirect',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `testing platform testing platform testing platform testing platform`
   String get marquee_test {
     return Intl.message(

@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "a_cup": MessageLookupByLibrary.simpleMessage("A罩杯"),
+        "auto_redirect": MessageLookupByLibrary.simpleMessage("几秒后自动导到首页"),
         "dancing": MessageLookupByLibrary.simpleMessage("舞蹈"),
         "do_not_leave_blank": MessageLookupByLibrary.simpleMessage("请勿为空"),
         "friendship": MessageLookupByLibrary.simpleMessage("交友"),
