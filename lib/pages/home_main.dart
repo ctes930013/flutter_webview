@@ -40,7 +40,7 @@ class _HomeMainState extends State<HomeMain> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeProvider provider = Provider.of<ThemeProvider>(context, listen: false);
+    final ThemeProvider provider = Provider.of<ThemeProvider>(context, listen: false);
     bool isNightMode = provider.isNightMode;
 
     return DefaultTabController(

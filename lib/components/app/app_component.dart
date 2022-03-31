@@ -42,7 +42,7 @@ class AppComponentState extends State<AppComponent> {
     Locale newLocale = context.select((LanguageProvider provider) => provider.getLocale);
 
     //初始化樣式
-    ThemeProvider provider = Provider.of<ThemeProvider>(context);
+    final ThemeProvider provider = Provider.of<ThemeProvider>(context);
     bool isNightMode = provider.isNightMode;
     ThemeMode themeMode = isNightMode ? ThemeMode.dark : ThemeMode.light;
 

@@ -39,8 +39,14 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
   }
 
   @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    HomeRecommendUpperSectionProvider provider =
+    final HomeRecommendUpperSectionProvider provider =
         Provider.of<HomeRecommendUpperSectionProvider>(context, listen: true);
 
     GenerateData generateData = GenerateData();
