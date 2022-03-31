@@ -79,6 +79,8 @@ class AppComponentState extends State<AppComponent> {
             //初始化自適應套件
             ScreenUtil.setContext(context);
             return Scaffold(
+              //避免鍵盤彈出時底部元件彈起
+              resizeToAvoidBottomInset: false,
               //偵測只要點擊空白處就自動隱藏鍵盤
               body: GestureDetector(
                 onTap: () {
