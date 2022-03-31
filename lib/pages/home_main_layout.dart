@@ -49,23 +49,11 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
     return Column(
       children: [
         //首頁上方滾輪切換過場動畫
-        AnimatedOpacity(
-          opacity: !provider.scrollForward ? 1.0 : 0.0,
+        AnimatedCrossFade (
           duration: const Duration(milliseconds: 500),
-          child: Visibility(
-            visible: !provider.scrollForward,
-            maintainState: true,    //保存狀態，讓其在widget tree中保存，不用每次重新build
-            child: const HomeUpperButtonSection(),
-          ),
-        ),
-        AnimatedOpacity(
-          opacity: provider.scrollForward ? 1.0 : 0.0,
-          duration: const Duration(milliseconds: 500),
-          child: Visibility(
-            visible: provider.scrollForward,
-            maintainState: true,
-            child: const HomeRecommendUpperSection(),
-          ),
+          firstChild: const HomeUpperButtonSection(),
+          secondChild: const HomeRecommendUpperSection(),
+          crossFadeState: !provider.scrollForward ? CrossFadeState.showFirst : CrossFadeState.showSecond,
         ),
         Expanded(
           child: RefreshIndicator(
