@@ -17,7 +17,8 @@ class Routes {
   static String demoFunc = "/demo/func";
   static String deepLink = "/message";
   static String ranking = "/ranking";
-  static String search = "search";
+  static String search = "/search";
+  static String chatRoom = "/chatRoom";
 
   static String linLaoShi = "/sssss";
 
@@ -33,6 +34,7 @@ class Routes {
     router.define(index, handler: indexHandler);
     router.define(ranking, handler: rankingHandler);
     router.define(search, handler: searchHandler);
+    router.define(chatRoom, handler: chatRoomHandler);
 
     router.define(linLaoShi, handler: Handler(
         handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
