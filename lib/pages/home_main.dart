@@ -58,6 +58,8 @@ class _HomeMainState extends State<HomeMain> {
                     horizontal: 35,
                   )),
               tabs: tabs,
+              labelStyle: const TextStyle(fontSize: 16),
+              unselectedLabelStyle: const TextStyle(fontSize: 12),
             ),
             actions: <Widget>[
               IconButton(
