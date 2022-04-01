@@ -27,5 +27,6 @@
   "index": "Index",
   "language": "Language",
   "auto_redirect": "Automatically lead to the home page after a few seconds",
+  "data_finish": "Data has been loaded",
   "marquee_test": "testing platform testing platform testing platform testing platform"
 }

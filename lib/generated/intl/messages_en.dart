@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "auto_redirect": MessageLookupByLibrary.simpleMessage(
             "Automatically lead to the home page after a few seconds"),
         "dancing": MessageLookupByLibrary.simpleMessage("dancint"),
+        "data_finish":
+            MessageLookupByLibrary.simpleMessage("Data has been loaded"),
         "do_not_leave_blank": MessageLookupByLibrary.simpleMessage(
             "do not leave any field blank"),
         "friendship": MessageLookupByLibrary.simpleMessage("friendship"),

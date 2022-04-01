@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "a_cup": MessageLookupByLibrary.simpleMessage("A罩杯"),
         "auto_redirect": MessageLookupByLibrary.simpleMessage("幾秒後自動導到首頁"),
         "dancing": MessageLookupByLibrary.simpleMessage("舞蹈"),
+        "data_finish": MessageLookupByLibrary.simpleMessage("資料均已加載完畢"),
         "do_not_leave_blank": MessageLookupByLibrary.simpleMessage("請勿為空"),
         "friendship": MessageLookupByLibrary.simpleMessage("交友"),
         "game_one_min_fast_three": MessageLookupByLibrary.simpleMessage("一分快三"),

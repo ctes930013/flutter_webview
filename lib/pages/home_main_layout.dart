@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:flutterwebview/components/widgets/data_load_finish_widget.dart';
 import 'package:flutterwebview/components/widgets/home_banner_widget.dart';
 import 'package:flutterwebview/components/widgets/progress_widget.dart';
+import 'package:flutterwebview/generated/l10n.dart';
 import 'package:flutterwebview/providers/home_load_more_provider.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:provider/provider.dart';
@@ -79,12 +81,15 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
             LazyLoadScrollView(
               //底部加載更多的處理方式
               onEndOfPage: () async {
-                //倘若目前正在進行底部加載以及資料量已經超過最大筆數則不動作
-                if(!isLoadMore && homeGridDataList.length < maxTotal){
+                //倘若目前正在進行底部加載
+                if(!isLoadMore){
                   loadMoreProvider.setLoadFinish(true);
                   await Future.delayed(const Duration(seconds: 2)); //delay
-                  homeGridDataList.addAll(generateData.getListData(total));  //產生新資料
-                  gridStreamController.sink.add(homeGridDataList);
+                  if(homeGridDataList.length < maxTotal){
+                    //資料量已經超過最大筆數則不新增
+                    homeGridDataList.addAll(generateData.getListData(total));  //產生新資料
+                    gridStreamController.sink.add(homeGridDataList);
+                  }
                   loadMoreProvider.setLoadFinish(false);
                 }
                 if(homeGridDataList.length >= maxTotal){
@@ -129,9 +134,6 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
                             HomeMainGrid(data),
                             //底部加載的進度圈
                             (isLoadMore) ? const ProgressWidget() : Container(),
-                            //底部加載完成提示
-                            (context.select((HomeLoadMoreProvider provider) => provider.dataEnd))
-                                ? const Text("資料均已加載完畢") : Container(),
                           ],
                         ),
                       ),

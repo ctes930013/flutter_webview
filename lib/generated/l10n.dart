@@ -330,6 +330,16 @@ class S {
     );
   }
 
+  /// `Data has been loaded`
+  String get data_finish {
+    return Intl.message(
+      'Data has been loaded',
+      name: 'data_finish',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `testing platform testing platform testing platform testing platform`
   String get marquee_test {
     return Intl.message(
