@@ -83,9 +83,13 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
                 if(!isLoadMore && homeGridDataList.length < maxTotal){
                   loadMoreProvider.setLoadFinish(true);
                   await Future.delayed(const Duration(seconds: 2)); //delay
-                  homeGridDataList.addAll(generateData.getListData(total));
+                  homeGridDataList.addAll(generateData.getListData(total));  //產生新資料
                   gridStreamController.sink.add(homeGridDataList);
                   loadMoreProvider.setLoadFinish(false);
+                }
+                if(homeGridDataList.length >= maxTotal){
+                  //檢查所有資料是否已經加載完畢
+                  loadMoreProvider.setDataEnd(true);
                 }
               },
               child: RefreshIndicator(
@@ -94,6 +98,8 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
                   await Future.delayed(const Duration(seconds: 2)); //delay
                   homeGridDataList = generateData.getListData(total);
                   gridStreamController.sink.add(homeGridDataList);
+                  //資料初始化
+                  loadMoreProvider.setDataEnd(false);
                   return Future.value();
                 },
                 //利用下拉刷新加上stream builder
@@ -123,6 +129,9 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
                             HomeMainGrid(data),
                             //底部加載的進度圈
                             (isLoadMore) ? const ProgressWidget() : Container(),
+                            //底部加載完成提示
+                            (context.select((HomeLoadMoreProvider provider) => provider.dataEnd))
+                                ? const Text("資料均已加載完畢") : Container(),
                           ],
                         ),
                       ),

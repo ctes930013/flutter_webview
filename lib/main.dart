@@ -54,7 +54,7 @@ void main() {
             create: (context) => HomeRecommendUpperSectionProvider(true),
           ),
           ChangeNotifierProvider<HomeLoadMoreProvider>(
-            create: (context) => HomeLoadMoreProvider(false),
+            create: (context) => HomeLoadMoreProvider(false, false),
           ),
         ],
         child: AppComponent(),
