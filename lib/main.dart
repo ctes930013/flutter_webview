@@ -7,6 +7,7 @@
  * See LICENSE for distribution and usage details.
  */
 import 'package:flutterwebview/config/constants.dart';
+import 'package:flutterwebview/providers/home_load_more_provider.dart';
 import 'package:flutterwebview/providers/language_provider.dart';
 import 'package:flutterwebview/providers/web_provider.dart';
 import 'package:flutterwebview/providers/theme_provider.dart';
@@ -51,6 +52,9 @@ void main() {
           ),
           ChangeNotifierProvider<HomeRecommendUpperSectionProvider>(
             create: (context) => HomeRecommendUpperSectionProvider(true),
+          ),
+          ChangeNotifierProvider<HomeLoadMoreProvider>(
+            create: (context) => HomeLoadMoreProvider(false),
           ),
         ],
         child: AppComponent(),
