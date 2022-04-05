@@ -23,7 +23,7 @@ class HomeMainLayout extends StatefulWidget {
   State createState() => HomeMainLayoutState();
 }
 
-class HomeMainLayoutState extends State<HomeMainLayout> {
+class HomeMainLayoutState extends State<HomeMainLayout> with AutomaticKeepAliveClientMixin {
   //定義stream控制器
   StreamController<List<HomeGridData>> gridStreamController =
       StreamController();
@@ -37,6 +37,10 @@ class HomeMainLayoutState extends State<HomeMainLayout> {
 
   GenerateData generateData = GenerateData();
   List<HomeGridData> homeGridDataList = [];
+
+  //保留tab切換後的狀態
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
