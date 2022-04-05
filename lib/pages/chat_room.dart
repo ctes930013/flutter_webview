@@ -15,48 +15,37 @@ class ChatRoom extends StatefulWidget {
 
 class _ChatRoomState extends State<ChatRoom> {
   //定義stream控制器
-  StreamController<List<ChatRoomMsgModal>> msgStreamController =
-      StreamController();
+  StreamController<ChatRoomMsgModal> msgStreamController = StreamController();
 
   //獲取StreamSink做add入口
-  StreamSink<List<ChatRoomMsgModal>> get dataSink => msgStreamController.sink;
+  StreamSink<ChatRoomMsgModal> get dataSink => msgStreamController.sink;
 
   //獲取Stream用於監聽
-  Stream<List<ChatRoomMsgModal>> get dataStream => msgStreamController.stream;
+  Stream<ChatRoomMsgModal> get dataStream => msgStreamController.stream;
 
   @override
   void initState() {
     super.initState();
     //初始化stream
-    msgStreamController = StreamController<List<ChatRoomMsgModal>>();
+    msgStreamController = StreamController<ChatRoomMsgModal>();
   }
 
-  delayHandler(msgList) async {
-    print('is run');
+  delayHandler(msgList, newMsgList) async {
     for (var i = 0; i < msgList.length; i++) {
       await Future.delayed(const Duration(milliseconds: 1000), () {
         print('is in count');
-
         dataSink.add(msgList[i]);
-
-        // print(dataSink);
-
-        return ListView.builder(
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            ChatRoomMsgModal msgListData = msgList[index]; //根據索引取得對應的資料
-            return ChatRoomMsg(msgListItem: msgListData);
-          },
-          itemCount: msgList.length,
-        );
+        newMsgList.add(msgList[i]);
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    var newMsgList = [];
     ChatRoomMsgData data = ChatRoomMsgData();
     var msgList = data.getChatRoomMsgList();
+    delayHandler(msgList, newMsgList);
 
     return Stack(
       children: <Widget>[
@@ -102,22 +91,16 @@ class _ChatRoomState extends State<ChatRoom> {
               child: StreamBuilder(
                 stream: dataStream,
                 builder: (BuildContext context,
-                    AsyncSnapshot<List<ChatRoomMsgModal>> snapshot) {
-                  List<ChatRoomMsgModal> data = snapshot.data ?? []; //get data
-                  return delayHandler(msgList);
-                  // return ListView.builder(
-                  //   shrinkWrap: true,
-                  //   itemBuilder: (context, index) {
-                  //     ChatRoomMsgModal msgListData =
-                  //         msgList[index]; //根據索引取得對應的資料
-                  //     return ChatRoomMsg(msgListItem: msgListData);
-                  //   },
-                  //   itemCount: msgList.length,
-                  // );
-                  // return const Text(
-                  //   '123',
-                  //   style: TextStyle(color: Colors.white),
-                  // );
+                    AsyncSnapshot<ChatRoomMsgModal> snapshot) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      ChatRoomMsgModal msgListData =
+                          newMsgList[index]; //根據索引取得對應的資料
+                      return ChatRoomMsg(msgListItem: msgListData);
+                    },
+                    itemCount: msgList.length,
+                  );
                 },
               )),
         )
