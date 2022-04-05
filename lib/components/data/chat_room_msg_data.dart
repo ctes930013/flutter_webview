@@ -36,6 +36,6 @@ class ChatRoomMsgData {
       return msgList;
     }
 
-    return msgDataHandler(30);
+    return msgDataHandler(5);
   }
 }
