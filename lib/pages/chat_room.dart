@@ -60,9 +60,11 @@ class _ChatRoomState extends State<ChatRoom> {
   //將listview滑到底
   void scrollDown() {
     Future.delayed(const Duration(milliseconds: 300), (){
-      listController.jumpTo(
-          listController.position.maxScrollExtent
-      );
+      if(listController.hasClients){
+        listController.jumpTo(
+            listController.position.maxScrollExtent
+        );
+      }
     });
   }
 
