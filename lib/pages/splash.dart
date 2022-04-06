@@ -26,6 +26,7 @@ class SplashState extends State<Splash> {
           flex: 1,
           child: Text(
             S.of(context).auto_redirect,
+            textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.red,
               fontSize: 15,

@@ -1,4 +1,7 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterwebview/config/application.dart';
+import 'package:flutterwebview/config/routes.dart';
 import 'package:flutterwebview/providers/language_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -9,18 +12,31 @@ class CheckoutLanguage extends StatelessWidget {
   void transChineseClick(context) {
     LanguageProvider provider = Provider.of<LanguageProvider>(context, listen: false);
     provider.setLocale(const Locale('zh', 'TW'));
+    restartApp(context);
   }
 
   //點擊簡體中文按鈕
   void simChineseClick(context) {
     LanguageProvider provider = Provider.of<LanguageProvider>(context, listen: false);
     provider.setLocale(const Locale('zh', 'CN'));
+    restartApp(context);
   }
 
   //點擊英文按鈕
   void englishClick(context) {
     LanguageProvider provider = Provider.of<LanguageProvider>(context, listen: false);
     provider.setLocale(const Locale('en'));
+    restartApp(context);
+  }
+
+  //重啟app
+  void restartApp(context){
+    Application.router.navigateTo(
+      context,
+      Routes.root,
+      transition: TransitionType.fadeIn,
+      clearStack: true,    //清除之前所有頁面
+    );
   }
 
   @override
