@@ -23,20 +23,47 @@ class _ChatRoomState extends State<ChatRoom> {
   //獲取Stream用於監聽
   Stream<ChatRoomMsgModal> get dataStream => msgStreamController.stream;
 
+  final ScrollController listController = ScrollController();
+  //紀錄當前的listview是否滑到底，true:沒滑到底，false:有滑到底
+  bool isUnBottom = false;
+
   @override
   void initState() {
     super.initState();
     //初始化stream
     msgStreamController = StreamController<ChatRoomMsgModal>();
+    //監聽listview的滑動
+    listController.addListener(() {
+      if (listController.position.atEdge) {
+        //已經滑到邊緣
+        isUnBottom = listController.position.pixels == 0;
+      }else{
+        //沒有滑到邊緣
+        isUnBottom = true;
+      }
+    });
   }
 
   delayHandler(msgList, newMsgList) async {
     for (var i = 0; i < msgList.length; i++) {
-      await Future.delayed(const Duration(milliseconds: 1000), () {
+      await Future.delayed(const Duration(milliseconds: 1500), () {
         dataSink.add(msgList[i]);
         newMsgList.add(msgList[i]);
+        //倘若目前已經滾動到底部，則新訊息自動滑到底部
+        if(!isUnBottom){
+          scrollDown();
+        }
       });
     }
+  }
+
+  //將listview滑到底
+  void scrollDown() {
+    Future.delayed(const Duration(milliseconds: 300), (){
+      listController.jumpTo(
+          listController.position.maxScrollExtent
+      );
+    });
   }
 
   @override
@@ -84,6 +111,7 @@ class _ChatRoomState extends State<ChatRoom> {
                 builder: (BuildContext context,
                     AsyncSnapshot<ChatRoomMsgModal> snapshot) {
                   return ListView.builder(
+                    controller: listController,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       ChatRoomMsgModal msgListData =
@@ -97,5 +125,12 @@ class _ChatRoomState extends State<ChatRoom> {
         )
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    listController.dispose();
+    super.dispose();
   }
 }
