@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluro/fluro.dart';
+import 'package:flutterwebview/config/application.dart';
 
 import '../../models/models/home_grid_data.dart';
 import '../../components/widgets/home_grid_widget.dart';
+import 'package:flutterwebview/config/routes.dart';
 
 class HomeMainGrid extends StatefulWidget {
   List<HomeGridData> data;
@@ -13,6 +16,11 @@ class HomeMainGrid extends StatefulWidget {
 }
 
 class _HomeMainGridState extends State<HomeMainGrid> {
+  void routerHandler(context, routesName) {
+    Application.router.navigateTo(context, routesName,
+        transition: TransitionType.inFromRight);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -23,8 +31,11 @@ class _HomeMainGridState extends State<HomeMainGrid> {
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (context, index) {
           HomeGridData homeGridData = widget.data[index]; //根據索引取得對應的資料
-          return HomeGridWidget(
-            homeGridData: homeGridData,
+          return GestureDetector(
+            onTap: () => routerHandler(context, Routes.chatRoom),
+            child: HomeGridWidget(
+              homeGridData: homeGridData,
+            ),
           );
         });
   }

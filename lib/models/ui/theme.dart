@@ -7,8 +7,8 @@ class Themes {
     accentColor: Colors.amber,
     brightness: Brightness.light,
     indicatorColor: Colors.amber,
-    splashFactory: DisableSplashUtils(),    //關閉水波紋
-    highlightColor: Colors.transparent,     //點擊按鈕時的背景色設定為透明
+    splashFactory: DisableSplashUtils(), //關閉水波紋
+    highlightColor: Colors.transparent, //點擊按鈕時的背景色設定為透明
   );
 
   static final dark = ThemeData(
