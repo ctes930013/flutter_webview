@@ -33,7 +33,6 @@ class _ChatRoomState extends State<ChatRoom> {
   delayHandler(msgList, newMsgList) async {
     for (var i = 0; i < msgList.length; i++) {
       await Future.delayed(const Duration(milliseconds: 1000), () {
-        print('is in count');
         dataSink.add(msgList[i]);
         newMsgList.add(msgList[i]);
       });
@@ -80,14 +79,6 @@ class _ChatRoomState extends State<ChatRoom> {
                 color: Colors.black.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(10),
               ),
-              // child: ListView.builder(
-              //   shrinkWrap: true,
-              //   itemBuilder: (context, index) {
-              //     ChatRoomMsgModal msgListData = msgList[index]; //根據索引取得對應的資料
-              //     return ChatRoomMsg(msgListItem: msgListData);
-              //   },
-              //   itemCount: msgList.length,
-              // ),
               child: StreamBuilder(
                 stream: dataStream,
                 builder: (BuildContext context,
@@ -99,7 +90,7 @@ class _ChatRoomState extends State<ChatRoom> {
                           newMsgList[index]; //根據索引取得對應的資料
                       return ChatRoomMsg(msgListItem: msgListData);
                     },
-                    itemCount: msgList.length,
+                    itemCount: newMsgList.length,
                   );
                 },
               )),
