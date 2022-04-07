@@ -6,6 +6,7 @@
  * Copyright (c) 2019 Yakka, LLC. All rights reserved.
  * See LICENSE for distribution and usage details.
  */
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutterwebview/config/constants.dart';
 import 'package:flutterwebview/providers/home_load_more_provider.dart';
 import 'package:flutterwebview/providers/language_provider.dart';
@@ -61,7 +62,9 @@ void main() {
             create: (context) => BannerSwiperUtilsProvider('none'),
           ),
         ],
-        child: AppComponent(),
+        child: Phoenix(
+          child: AppComponent(),
+        ),
       ),
     );
   });

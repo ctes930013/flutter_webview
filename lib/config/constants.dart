@@ -15,4 +15,7 @@ class Constants{
   //定義英文名稱
   static const String languageEnglish = "en";
 
+  //定義是否重啟app
+  static bool isRestartApp = false;
+
 }

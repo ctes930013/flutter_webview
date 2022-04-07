@@ -9,21 +9,6 @@ import 'package:flutterwebview/providers/theme_provider.dart';
 import '../pages/home_main_layout.dart';
 import 'package:flutterwebview/generated/l10n.dart';
 
-List<Tab> tabs = <Tab>[
-  Tab(
-    text: S.current.index,
-    height: 30,
-  ),
-  Tab(
-    text: S.current.language,
-    height: 30,
-  ),
-  const Tab(
-    text: 'Tab C',
-    height: 30,
-  ),
-];
-
 class HomeMain extends StatefulWidget {
   @override
   State<HomeMain> createState() => _HomeMainState();
@@ -42,6 +27,21 @@ class _HomeMainState extends State<HomeMain> {
   Widget build(BuildContext context) {
     final ThemeProvider provider = Provider.of<ThemeProvider>(context, listen: false);
     bool isNightMode = provider.isNightMode;
+
+    List<Tab> tabs = <Tab>[
+      Tab(
+        text: S.of(context).index,
+        height: 30,
+      ),
+      Tab(
+        text: S.of(context).language,
+        height: 30,
+      ),
+      const Tab(
+        text: 'Tab C',
+        height: 30,
+      ),
+    ];
 
     return DefaultTabController(
         length: tabs.length,
