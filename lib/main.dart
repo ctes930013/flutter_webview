@@ -13,6 +13,7 @@ import 'package:flutterwebview/providers/web_provider.dart';
 import 'package:flutterwebview/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutterwebview/providers/home_recommend_upper_section_provider.dart';
+import 'package:flutterwebview/providers/banner_swiper_utils_provider.dart';
 import 'package:intl/intl.dart';
 
 import 'components/app/app_component.dart';
@@ -55,6 +56,9 @@ void main() {
           ),
           ChangeNotifierProvider<HomeLoadMoreProvider>(
             create: (context) => HomeLoadMoreProvider(false, false),
+          ),
+          ChangeNotifierProvider<BannerSwiperUtilsProvider>(
+            create: (context) => BannerSwiperUtilsProvider('none'),
           ),
         ],
         child: AppComponent(),

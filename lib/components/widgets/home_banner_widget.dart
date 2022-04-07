@@ -10,10 +10,8 @@ class HomeBannerWidget extends StatefulWidget {
 }
 
 class HomeBannerWidgetState extends State<HomeBannerWidget> {
-
   @override
   Widget build(BuildContext context) {
-
     List<String> bannerList = [
       'lib/images/banner/banner11.png',
       'lib/images/banner/banner12.png',
@@ -35,8 +33,7 @@ class HomeBannerWidgetState extends State<HomeBannerWidget> {
         //輪播的item
         getwidget: (index) {
           return GestureDetector(
-              child:
-              Image.asset(
+              child: Image.asset(
                 bannerList[index % bannerList.length],
                 fit: BoxFit.cover,
               ),
