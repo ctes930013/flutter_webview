@@ -69,7 +69,7 @@ class HomeMainLayoutState extends State<HomeMainLayout>
         Provider.of<HomeLoadMoreProvider>(context, listen: true);
 
     final BannerSwiperUtilsProvider bannerProvider =
-        Provider.of<BannerSwiperUtilsProvider>(context, listen: true);
+        Provider.of<BannerSwiperUtilsProvider>(context, listen: false);
 
     //監聽目前正在做底部加載
     bool isLoadMore =

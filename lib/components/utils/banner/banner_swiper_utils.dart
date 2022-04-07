@@ -70,7 +70,7 @@ class _BannerSwiperUtilsState extends State<BannerSwiperUtils> {
   @override
   Widget build(BuildContext context) {
     final BannerSwiperUtilsProvider bannerProvider =
-        Provider.of<BannerSwiperUtilsProvider>(context);
+        Provider.of<BannerSwiperUtilsProvider>(context, listen: false);
     return getBanner2(bannerProvider);
   }
 
@@ -130,8 +130,6 @@ class _BannerSwiperUtilsState extends State<BannerSwiperUtils> {
       controller: _pageController,
       physics: const PageScrollPhysics(parent: BouncingScrollPhysics()),
       onPageChanged: ((index) {
-        print('did update');
-
 //        setState(() {
         _currentIndex = index;
         if (indicatorKey.currentState != null) {
@@ -166,15 +164,12 @@ class _BannerSwiperUtilsState extends State<BannerSwiperUtils> {
               //向左滑
               if (direction == ScrollDirection.reverse) {
                 bannerProvider.setScrollStatus('left');
-                print(bannerProvider.scrollStatus);
                 //向右滑
               } else if (direction == ScrollDirection.forward) {
                 bannerProvider.setScrollStatus('right');
-                print(bannerProvider.scrollStatus);
                 //停止左右刷banner
               } else if (direction == ScrollDirection.idle) {
                 bannerProvider.setScrollStatus('none');
-                print(bannerProvider.scrollStatus);
               }
               return true;
             },
