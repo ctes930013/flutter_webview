@@ -19,10 +19,16 @@ import 'package:intl/intl.dart';
 
 import 'components/app/app_component.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   //等待初始化完成，否則報error
   WidgetsFlutterBinding.ensureInitialized();
+
+  //將app固定直立
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 
   //設定系統預設語系
   Intl.defaultLocale = Constants.languageTraditional;
