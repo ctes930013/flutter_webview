@@ -38,6 +38,8 @@ class HomeMainLayoutState extends State<HomeMainLayout> with AutomaticKeepAliveC
   GenerateData generateData = GenerateData();
   List<HomeGridData> homeGridDataList = [];
 
+  double lastDownY = 0;
+
   //保留tab切換後的狀態
   @override
   bool get wantKeepAlive => true;
@@ -61,23 +63,30 @@ class HomeMainLayoutState extends State<HomeMainLayout> with AutomaticKeepAliveC
   @override
   Widget build(BuildContext context) {
     final HomeRecommendUpperSectionProvider provider =
-        Provider.of<HomeRecommendUpperSectionProvider>(context, listen: true);
+        Provider.of<HomeRecommendUpperSectionProvider>(context, listen: false);
 
     final HomeLoadMoreProvider loadMoreProvider =
         Provider.of<HomeLoadMoreProvider>(context, listen: true);
 
     //監聽目前正在做底部加載
     bool isLoadMore = context.select((HomeLoadMoreProvider provider) => provider.loading);
+    print("fuck");
 
     //下拉刷新
     return Column(
       children: [
         //首頁上方滾輪切換過場動畫
-        AnimatedCrossFade (
-          duration: const Duration(milliseconds: 500),
-          firstChild: const HomeUpperButtonSection(),
-          secondChild: const HomeRecommendUpperSection(),
-          crossFadeState: !provider.scrollForward ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+        //利用select監聽上方滾輪動畫
+        Selector<HomeRecommendUpperSectionProvider, bool>(
+          selector: (_, provider) => provider.scrollForward,
+          builder: (context, scrollForward, child) {
+            return AnimatedCrossFade (
+              duration: const Duration(milliseconds: 500),
+              firstChild: const HomeUpperButtonSection(),
+              secondChild: const HomeRecommendUpperSection(),
+              crossFadeState: !scrollForward ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+            );
+          },
         ),
         Expanded(
           child:
@@ -96,10 +105,6 @@ class HomeMainLayoutState extends State<HomeMainLayout> with AutomaticKeepAliveC
                   }
                   loadMoreProvider.setLoadFinish(false);
                 }
-                if(homeGridDataList.length >= maxTotal){
-                  //檢查所有資料是否已經加載完畢
-                  loadMoreProvider.setDataEnd(true);
-                }
               },
               child: RefreshIndicator(
                 //下拉刷新的處理事件
@@ -107,8 +112,6 @@ class HomeMainLayoutState extends State<HomeMainLayout> with AutomaticKeepAliveC
                   await Future.delayed(const Duration(seconds: 2)); //delay
                   homeGridDataList = generateData.getListData(total);
                   gridStreamController.sink.add(homeGridDataList);
-                  //資料初始化
-                  loadMoreProvider.setDataEnd(false);
                   return Future.value();
                 },
                 //利用下拉刷新加上stream builder
@@ -142,23 +145,23 @@ class HomeMainLayoutState extends State<HomeMainLayout> with AutomaticKeepAliveC
                         ),
                       ),
                       onPointerDown: (event) {
-                        provider.lastDownY = event.position.distance;
+                        lastDownY = event.position.distance;
                       },
                       //控制首頁上方section根據滾輪上下切換
                       onPointerMove: (event) {
                         var position = event.position.distance;
                         double detal = 0;
-                        if (provider.lastDownY != 0) {
-                          detal = position - provider.lastDownY;
+                        if (lastDownY != 0) {
+                          detal = position - lastDownY;
                         }
                         if (detal > 25) {
                           //顯示跑馬燈以及圖片
                           provider.setScrollForward(true);
-                          provider.setLastDownY(position);
+                          lastDownY = position;
                         } else if (detal < -25) {
                           //顯示按鈕
                           provider.setScrollForward(false);
-                          provider.setLastDownY(position);
+                          lastDownY = position;
                         }
                       },
                     );
